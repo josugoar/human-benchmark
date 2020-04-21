@@ -41,6 +41,6 @@
     "editor.formatOnSave": true,
     "eslint.workingDirectories": ["./client", "./server"],
     "javascript.validate.enable": false,
-    "python.pythonPath": "C:\\Users\\Josu\\.virtualenvs\\server-Vd95R4fx\\Scripts\\python.exe"
+    "python.pythonPath": "${workspaceFolder}\\server\\.venv\\Scripts\\python.exe"
   }
 }

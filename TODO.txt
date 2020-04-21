@@ -1,0 +1,8 @@
+.
+├── client
+│   └── TODO: Fix footer
+└── server
+    ├── model
+    │   └── TODO: Text generation (https://www.tensorflow.org/tutorials/text/text_generation)
+    ├── TODO: Migrate to Django (https://docs.djangoproject.com/en/3.0/intro/)
+    └── TODO: Add highscore database

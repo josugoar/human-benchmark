@@ -32,7 +32,7 @@ export default {
    */
   plugins: [
     {
-      src: '@/plugins/registerServiceWorker.ts',
+      src: '@/plugins/sw.ts',
       mode: 'client'
     }
   ],
@@ -60,7 +60,7 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['@/assets/variables.scss'],
+    customVariables: ['@/assets/scss/variables.scss'],
     theme: {
       dark: true,
       themes: {

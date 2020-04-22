@@ -1,21 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "allowJs": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "esnext", "esnext.asynciterable"],
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["dom", "esnext", "esnext.asynciterable"],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "strict": true,
     "noEmit": true,
-    "experimentalDecorators": true,
-    "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "~~/*": ["../*"],
+      "@@/*": ["../*"]
     },
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2018",
     "types": ["@nuxtjs/axios", "@nuxt/types", "@nuxt/vue-app", "@types/node"]
   },
-  "exclude": ["dist", "node_modules", ".nuxt"]
+  "exclude": ["node_modules", ".nuxt"]
 }

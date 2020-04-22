@@ -1,6 +1,7 @@
 .
 ├── client
-│   └── TODO: Fix footer
+│   ├── TODO: Fix footer
+│   └── TODO: Add service worker cache
 └── server
     ├── model
     │   └── TODO: Text generation (https://www.tensorflow.org/tutorials/text/text_generation)

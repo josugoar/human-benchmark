@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <strong>{{ random }}</strong>
+    <strong @click="randomize">{{ random }}</strong>
   </v-layout>
 </template>
 

@@ -2,12 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: 'Type-Test',
+    title: 'Type-Test',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -17,50 +14,46 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico' }]
   },
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
-  css: [],
-  /*
-   ** Plugins to load before mounting the App
-   */
+  css: ['@/assets/css/scss/main.scss'],
   plugins: [
     {
       src: '@/plugins/sw.ts',
       mode: 'client'
     }
   ],
-  /*
-   ** Nuxt.js dev-modules
-   */
+  build: {
+    extend(config, ctx) {
+      if (ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|ts|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
+  },
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
-  ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
-  /*
-   ** vuetify module configuration
-   ** https://github.com/nuxt-community/vuetify-module
-   */
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/pwa'],
+  axios: {
+    // Axios: https://axios.nuxtjs.org/options
+  },
+  env: {
+    // DotEnv: https://github.com/nuxt-community/dotenv-module
+  },
+  pwa: {
+    // PWA: https://github.com/nuxt-community/pwa-module
+    icon: {
+      iconFileName: 'main-icon.png',
+      iconSrc: './assets/images/icons/main-icon.png'
+    }
+  },
   vuetify: {
-    customVariables: ['@/assets/scss/variables.scss'],
+    // Vuetify: https://github.com/nuxt-community/vuetify-module
+    customVariables: ['@/assets/css/scss/variables.scss'],
     theme: {
       dark: true,
       themes: {
@@ -75,14 +68,5 @@ export default {
         }
       }
     }
-  },
-  /*
-   ** Build configuration
-   */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
   }
 }

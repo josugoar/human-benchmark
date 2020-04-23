@@ -21,19 +21,23 @@
   "launch": {
     "compounds": [
       {
-        "name": "Node: Nuxt",
-        "configurations": ["Node: Server", "Node: Client"]
+        "name": "Type-Test: Nuxt.js, Django",
+        "configurations": [
+          "Python: Django Server",
+          "Node: Nuxt.js Server",
+          "Node: Nuxt.js Client"
+        ]
       }
     ],
     "configurations": [
       {
-        "name": "Node: Client",
+        "name": "Node: Nuxt.js Client",
         "type": "chrome",
         "request": "launch",
         "url": "http://localhost:3000"
       },
       {
-        "name": "Node: Server",
+        "name": "Node: Nuxt.js Server",
         "type": "node",
         "request": "launch",
         "args": ["dev"],
@@ -49,10 +53,10 @@
         }
       },
       {
-        "name": "Python: Django",
+        "name": "Python: Django Server",
         "type": "python",
         "request": "launch",
-        "program": "${workspaceFolder}\\server\\manage.py",
+        "program": "${workspaceFolder}/server/manage.py",
         "args": ["runserver", "--noreload"],
         "django": true
       }
@@ -60,11 +64,8 @@
     "version": "0.2.0"
   },
   "settings": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "eslint.workingDirectories": ["./client", "./server"],
-    "javascript.validate.enable": false,
-    "python.pythonPath": "${workspaceFolder}\\server\\.venv\\Scripts\\python.exe",
-    "vetur.completion.useScaffoldSnippets": false
+    "python.pythonPath": "${workspaceFolder}/server/.venv/Scripts/python.exe"
   }
 }

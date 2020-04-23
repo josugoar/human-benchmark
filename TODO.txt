@@ -2,11 +2,13 @@
 ├── TODO: Change VSCode theme
 ├── client
 │   ├── TODO: Fix footer
+│   ├── TODO: Run tests
 │   ├── DONE: (TODO: Install "sdras.vue-vscode-snippets")
 │   └── DONE: (TODO: Add service worker cache)
 └── server
     ├── model
-    │   └── TODO: Text generation (https://www.tensorflow.org/tutorials/text/text_generation)
+    │   └── TODO: Research TensorFlow text generation (https://www.tensorflow.org/tutorials/text/text_generation)
     ├── TODO: Migrate to Django (https://docs.djangoproject.com/en/3.0/intro/)
     ├── TODO: Add highscore database
+    ├── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)
     └── TODO: Update server README.md

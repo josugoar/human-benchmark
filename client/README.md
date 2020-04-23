@@ -1,16 +1,16 @@
-# Build Setup
+# Client Build Setup
 
 ```bash
-# install dependencies
+# [dependencies]
 $ npm install
 
-# serve with hot reload at localhost:3000
+# [development]
 $ npm run dev
 
-# build for production and launch server
+# [production]
 $ npm run build
 $ npm run start
 
-# generate static project
+# [staticfiles]
 $ npm run generate
 ```

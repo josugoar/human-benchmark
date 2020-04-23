@@ -1,14 +1,16 @@
 {
   "extensions": {
     "recommendations": [
-      "ms-python.python",
-      "esbenp.prettier-vscode",
-      "octref.vetur",
+      "msjsdiag.debugger-for-chrome",
+      "mikestead.dotenv",
       "editorconfig.editorconfig",
       "dbaeumer.vscode-eslint",
       "davidanson.vscode-markdownlint",
-      "mikestead.dotenv",
-      "humao.rest-client"
+      "esbenp.prettier-vscode",
+      "ms-python.python",
+      "humao.rest-client",
+      "octref.vetur",
+      "sdras.vue-vscode-snippets"
     ]
   },
   "folders": [
@@ -17,13 +19,34 @@
     }
   ],
   "launch": {
+    "compounds": [
+      {
+        "name": "Node: Nuxt",
+        "configurations": ["Node: Server", "Node: Client"]
+      }
+    ],
     "configurations": [
       {
-        "name": "JavaScript/TypeScript: Node",
+        "name": "Node: Client",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000"
+      },
+      {
+        "name": "Node: Server",
         "type": "node",
         "request": "launch",
-        "program": "${file}",
-        "skipFiles": ["<node_internals>/**"]
+        "args": ["dev"],
+        "cwd": "${workspaceFolder}/client",
+        "osx": {
+          "program": "${workspaceFolder}/client/node_modules/.bin/nuxt"
+        },
+        "linux": {
+          "program": "${workspaceFolder}/client/node_modules/.bin/nuxt"
+        },
+        "windows": {
+          "program": "${workspaceFolder}/client/node_modules/nuxt/bin/nuxt.js"
+        }
       },
       {
         "name": "Python: Django",
@@ -41,6 +64,7 @@
     "editor.formatOnSave": true,
     "eslint.workingDirectories": ["./client", "./server"],
     "javascript.validate.enable": false,
-    "python.pythonPath": "${workspaceFolder}\\server\\.venv\\Scripts\\python.exe"
+    "python.pythonPath": "${workspaceFolder}\\server\\.venv\\Scripts\\python.exe",
+    "vetur.completion.useScaffoldSnippets": false
   }
 }

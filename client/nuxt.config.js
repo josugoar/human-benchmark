@@ -26,6 +26,11 @@ export default {
   ],
   build: {
     extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    },
+    extend(config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -53,7 +58,7 @@ export default {
   },
   vuetify: {
     // Vuetify: https://github.com/nuxt-community/vuetify-module
-    customVariables: ['@/assets/css/scss/variables.scss'],
+    customVariables: ['@/assets/scss/variables.scss'],
     theme: {
       dark: true,
       themes: {

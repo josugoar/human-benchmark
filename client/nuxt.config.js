@@ -17,7 +17,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico' }]
   },
   loading: { color: '#fff' },
-  css: ['@/assets/css/scss/main.scss'],
+  css: ['@/assets/scss/main.scss'],
   plugins: [
     {
       src: '@/plugins/sw.ts',
@@ -29,8 +29,6 @@ export default {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
-    },
-    extend(config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',

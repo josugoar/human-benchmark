@@ -1,7 +1,9 @@
 .
-├── TODO: Change VSCode theme
+├── TODO: Reference (https://www.livechat.com/typing-speed-test/?source_id=typingspeedtest&source_url=https://www.livechat.com/typing-speed-test/&source_type=website#/,
+│                    https://www.humanbenchmark.com/tests/typing)
+├── DONE: (TODO: Change VSCode theme)
 ├── client
-│   ├── TODO: Fix footer
+│   ├── DONE: (TODO: Fix footer)
 │   ├── TODO: Run tests
 │   ├── DONE: (TODO: Install "sdras.vue-vscode-snippets")
 │   └── DONE: (TODO: Add service worker cache)
@@ -11,4 +13,4 @@
     ├── TODO: Migrate to Django (https://docs.djangoproject.com/en/3.0/intro/)
     ├── TODO: Add highscore database
     ├── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)
-    └── TODO: Update server README.md
+    └── DONE: (TODO: Update server README.md)

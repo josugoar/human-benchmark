@@ -51,7 +51,7 @@ export default {
     // PWA: https://github.com/nuxt-community/pwa-module
     icon: {
       iconFileName: 'main-icon.png',
-      iconSrc: './assets/images/icons/main-icon.png'
+      iconSrc: './assets/icons/main-icon.png'
     }
   },
   vuetify: {

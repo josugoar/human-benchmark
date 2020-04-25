@@ -1,7 +1,11 @@
 <template>
-  <v-layout>
-    <strong @click="randomize">{{ random }}</strong>
-  </v-layout>
+  <v-content class="vaporwave-bg">
+    <v-container class="sunset-bg" fill-height>
+      <strong @click="randomize">
+        {{ random }}
+      </strong>
+    </v-container>
+  </v-content>
 </template>
 
 <script lang="ts">
@@ -28,7 +32,21 @@ export default Vue.extend({
         .catch((error) => {
           console.log(error)
         })
-    }
+    },
+    offset() {}
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.vaporwave-bg {
+  background-image: url('/images/vaporwave-background.svg');
+  background-position: center center;
+  background-size: cover;
+}
+.sunset-bg {
+  background-image: url('/images/sunset.png');
+  background-position: center center;
+  background-size: cover;
+}
+</style>

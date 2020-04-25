@@ -3,6 +3,7 @@
 │                    https://www.humanbenchmark.com/tests/typing)
 ├── DONE: (TODO: Change VSCode theme)
 ├── client
+├── ├── TODO: Fix navbar
 │   ├── DONE: (TODO: Fix footer)
 │   ├── TODO: Run tests
 │   ├── DONE: (TODO: Install "sdras.vue-vscode-snippets")

@@ -4,8 +4,7 @@
     "types": [
       "./client/node_modules/@nuxtjs/axios",
       "./client/node_modules/@nuxt/types",
-      "./client/node_modules/@nuxt/vue-app",
-      "./client/node_modules/@types/node"
+      "./client/node_modules/@nuxt/vue-app"
     ]
   },
   "extends": "./client/tsconfig.json"

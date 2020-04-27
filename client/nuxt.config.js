@@ -22,6 +22,10 @@ export default {
     {
       src: '@/plugins/sw.ts',
       mode: 'client'
+    },
+    {
+      src: '@/plugins/vue-kinesis.ts',
+      mode: 'client'
     }
   ],
   build: {

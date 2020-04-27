@@ -17,7 +17,8 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue-kinesis": "^1.1.5"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.6.0",
@@ -35,5 +36,6 @@
     "jest": "^24.1.0",
     "vue-jest": "^4.0.0-0",
     "ts-jest": "^25.0.0"
-  }
+  },
+  "types": ""
 }

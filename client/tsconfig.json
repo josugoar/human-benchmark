@@ -17,7 +17,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2018",
-    "types": ["@nuxtjs/axios", "@nuxt/types", "@nuxt/vue-app", "@types/node"]
+    "types": ["@nuxtjs/axios", "@nuxt/types", "@nuxt/vue-app"]
   },
-  "exclude": ["node_modules", ".nuxt"]
+  "exclude": ["node_modules", "@types", ".nuxt"]
 }

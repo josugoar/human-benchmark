@@ -20,10 +20,6 @@ export default {
   css: ['@/assets/scss/main.scss'],
   plugins: [
     {
-      src: '@/plugins/sw.ts',
-      mode: 'client'
-    },
-    {
       src: '@/plugins/vue-kinesis.ts',
       mode: 'client'
     }

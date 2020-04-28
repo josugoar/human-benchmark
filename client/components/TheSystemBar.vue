@@ -1,5 +1,5 @@
 <template>
-  <v-system-bar app dark>
+  <v-system-bar app>
     <v-spacer />
     <v-btn v-for="game in games" :key="game.id">
       <v-icon>{{ game.icon }}</v-icon>

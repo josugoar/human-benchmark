@@ -1,5 +1,5 @@
 <template>
-  <v-footer app dark>
+  <v-footer absolute app>
     <v-container>
       <v-row align="center" justify="center">
         {{ msg }}

@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app dark short>
+  <v-app-bar app short>
     <v-app-bar-nav-icon class="d-flex d-sm-none" />
     <v-toolbar-title class="pa-0">
       <v-container align="center">

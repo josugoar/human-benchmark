@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <TheSystemBar />
     <TheHeader />
     <nuxt />
     <TheFooter />
@@ -9,12 +8,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import TheSystemBar from '@/components/TheSystemBar.vue'
-import TheHeader from '@/components/TheHeader.vue'
-import TheFooter from '@/components/TheFooter.vue'
+import TheHeader from '@/components/app/TheHeader.vue'
+import TheFooter from '@/components/app/TheFooter.vue'
 export default Vue.extend({
   components: {
-    TheSystemBar,
     TheHeader,
     TheFooter
   }

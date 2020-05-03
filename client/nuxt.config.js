@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   mode: 'universal',
   head: {
-    titleTemplate: 'Type-Test',
-    title: 'Type-Test',
+    title: 'Human Benchmark',
+    titleTemplate: process.env.title || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -14,11 +14,18 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon/favicon.ico' }]
   },
-  loading: { color: '#fff' },
+  loading: {
+    color: '#fff',
+    height: '5px'
+  },
   css: ['@/assets/scss/main.scss'],
   plugins: [
+    {
+      src: '@/plugins/register-global.ts',
+      mode: 'client'
+    },
     {
       src: '@/plugins/vue-kinesis.ts',
       mode: 'client'
@@ -28,8 +35,7 @@ export default {
     extend(config, ctx) {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
-      }
-      if (ctx.isClient) {
+      } else {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|ts|vue)$/,
@@ -51,22 +57,24 @@ export default {
     // PWA: https://github.com/nuxt-community/pwa-module
     icon: {
       iconFileName: 'main-icon.png',
-      iconSrc: './assets/icons/main-icon.png'
+      iconSrc: '@/assets/icons/main-icon.png'
     }
   },
   vuetify: {
     // Vuetify: https://github.com/nuxt-community/vuetify-module
     customVariables: ['@/assets/scss/variables.scss'],
     theme: {
-      dark: true,
+      options: {
+        customProperties: true
+      },
       themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
+        light: {
+          primary: colors.grey.lighten4,
+          secondary: colors.grey.darken4,
+          accent: colors.amber.accent4,
+          info: colors.teal.accent3,
+          warning: colors.orange.accent3,
+          error: colors.red.accent3,
           success: colors.green.accent3
         }
       }

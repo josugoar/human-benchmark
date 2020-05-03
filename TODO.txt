@@ -3,10 +3,10 @@
 │                    https://www.humanbenchmark.com/tests/typing)
 ├── DONE: (TODO: Change VSCode theme)
 ├── client
-│   ├── TODO: Fix navbar
+│   ├── TODO: Add axios GraphQL endpoint
 │   ├── TODO: Add @types directory
-│   ├── DONE: (TODO: Fix footer)
 │   ├── TODO: Run tests
+│   ├── TODO: add custom font face
 │   ├── DONE: (TODO: Install "sdras.vue-vscode-snippets")
 │   └── DONE: (TODO: Add service worker cache)
 └── server

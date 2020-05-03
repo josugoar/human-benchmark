@@ -3,5 +3,6 @@ node_modules/
 __pycache__/
 .nuxt/
 .venv/
+report.*
 sw.*
 .env

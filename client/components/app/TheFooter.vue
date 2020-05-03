@@ -2,19 +2,19 @@
   <v-footer absolute app>
     <v-container>
       <v-row align="center" justify="center">
-        {{ msg }}
+        Powered by
         <v-btn
-          v-for="framework in frameworks"
-          :key="framework.id"
-          :href="framework.url"
+          v-for="reference in references"
+          :key="reference.name"
+          :href="reference.url"
           class="ml-1"
           target="_blank"
           icon
         >
           <v-avatar size="25" tile>
             <v-img
-              :alt="framework.name"
-              :src="require(`@/assets/icons/${framework.icon}`)"
+              :alt="reference.name"
+              :src="require(`@/assets/icons/${reference.path}`)"
               contain
             />
           </v-avatar>
@@ -29,25 +29,21 @@ import Vue from 'vue'
 export default Vue.extend({
   data() {
     return {
-      msg: 'Powered by',
-      frameworks: [
+      references: [
         {
-          id: 1,
           name: 'Nuxt.js',
           url: 'https://www.nuxtjs.org/',
-          icon: 'nuxt-icon.png'
+          path: 'nuxt-icon.png'
         },
         {
-          id: 2,
           name: 'Django',
           url: 'https://www.djangoproject.com/',
-          icon: 'django-icon.png'
+          path: 'django-icon.png'
         },
         {
-          id: 3,
           name: 'TensorFlow',
           url: 'https://www.tensorflow.org/',
-          icon: 'tensorflow-icon.png'
+          path: 'tensorflow-icon.png'
         }
       ]
     }

@@ -1,58 +1,99 @@
 <template>
-  <v-content>
-    <v-card style="min-height: 100vh">
-      <v-container style="min-height: 100vh" fill-height>
-        <v-col>
-          <v-card>
-            <v-card-title>
-              Lorem
-            </v-card-title>
-            <v-card-text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              minus natus totam dolore, atque sapiente? Fugit, libero
-              praesentium officia culpa, illo laboriosam dolorem ipsam repellat,
-              magni provident necessitatibus accusantium. Ipsa!
-            </v-card-text>
-            <v-card-actions>
-              <v-row justify="center">
-                <v-btn>
-                  Lorem Ipsum
-                </v-btn>
-              </v-row>
-            </v-card-actions>
-          </v-card>
+  <v-content style="background-color: var(--v-primary-base);">
+    <v-container style="height: 100vh;" fluid>
+      <v-row align="center">
+        <v-col
+          :class="{ 'text-center': $vuetify.breakpoint.xs }"
+          class="d-flex display-2 font-weight-black justify-center text-uppercase"
+          cols="12"
+          order-sm="2"
+          sm="6"
+          style="color: var(--v-secondary-base); overflow: hidden;"
+        >
+          Human
+          <br />
+          Benchmark
         </v-col>
         <v-col>
-          <v-img aspect-ratio="1" src="images/bust-1.png" contain />
+          <v-item-group
+            v-model="window"
+            class="d-flex justify-space-around"
+            mandatory
+          >
+            <v-item
+              v-for="n in length"
+              v-slot:default="{ active, toggle }"
+              :key="n"
+            >
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    :input-value="active"
+                    active-class="active"
+                    icon
+                    v-on="on"
+                    @click.stop="toggle"
+                  >
+                    <v-icon>
+                      mdi-record
+                    </v-icon>
+                  </v-btn>
+                </template>
+                Lorem ipsum
+              </v-tooltip>
+            </v-item>
+          </v-item-group>
         </v-col>
-      </v-container>
-    </v-card>
-    <v-container>
-      <v-row v-for="i in 2" :key="i">
-        <v-col v-for="j in 2" :key="j">
-          <v-card>
-            <v-img src="https://via.placeholder.com/150" />
-            <v-card-title>
-              Lorem
-            </v-card-title>
-            <v-card-text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              minus natus totam dolore, atque sapiente? Fugit, libero
-              praesentium officia culpa, illo laboriosam dolorem ipsam repellat,
-              magni provident necessitatibus accusantium. Ipsa!
-            </v-card-text>
-          </v-card>
+      </v-row>
+      <v-row align="center">
+        <v-col>
+          <v-window
+            v-model="window"
+            continuous
+            show-arrows
+            show-arrows-on-hover
+          >
+            <v-window-item v-for="n in length" :key="n">
+              <v-container>
+                <v-row justify="center">
+                  <v-icon color="secondary" size="200">
+                    mdi-chess-king
+                  </v-icon>
+                </v-row>
+                <v-row justify="center" style="color: var(--v-secondary-base);">
+                  Lorem Ipsum Dolor Sit Amet
+                </v-row>
+              </v-container>
+            </v-window-item>
+          </v-window>
         </v-col>
       </v-row>
     </v-container>
+    <!-- <v-fab-transition>
+      <v-btn absolute fab bottom right>
+        <v-icon>
+          mdi-arrow-down-thick
+        </v-icon>
+      </v-btn>
+    </v-fab-transition> -->
   </v-content>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  name: 'Home'
+  name: 'Home',
+  data() {
+    return {
+      length: 5,
+      window: 1
+    }
+  }
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.active {
+  color: black !important;
+}
+</style>

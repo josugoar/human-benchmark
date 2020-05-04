@@ -3,12 +3,15 @@
     <v-container style="height: 100vh;" fluid>
       <v-row align="center">
         <v-col
-          :class="{ 'text-center': $vuetify.breakpoint.xs }"
-          class="d-flex display-2 font-weight-black justify-center text-uppercase"
+          :class="[
+            $vuetify.breakpoint.xs ? 'text-center' : '',
+            $vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-2'
+          ]"
+          class="d-flex font-weight-black justify-center text-uppercase"
           cols="12"
           order-sm="2"
           sm="6"
-          style="color: var(--v-secondary-base);"
+          style="color: var(--v-secondary-base); margin: 12px;"
         >
           Human
           <br />
@@ -20,11 +23,7 @@
             class="d-flex justify-space-around"
             mandatory
           >
-            <v-item
-              v-for="n in length"
-              v-slot:default="{ active, toggle }"
-              :key="n"
-            >
+            <v-item v-for="n in length" #default="{ active, toggle }" :key="n">
               <v-tooltip top>
                 <template v-slot:activator="{ on }">
                   <v-btn
@@ -56,9 +55,15 @@
             <v-window-item v-for="n in length" :key="n">
               <v-container>
                 <v-row justify="center">
-                  <v-icon color="secondary" size="200">
-                    mdi-chess-king
-                  </v-icon>
+                  <client-only>
+                    <kinesis-container>
+                      <kinesis-element>
+                        <v-icon color="secondary" size="200">
+                          mdi-chess-king
+                        </v-icon>
+                      </kinesis-element>
+                    </kinesis-container>
+                  </client-only>
                 </v-row>
                 <v-row justify="center" style="color: var(--v-secondary-base);">
                   Lorem Ipsum Dolor Sit Amet

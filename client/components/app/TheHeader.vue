@@ -15,26 +15,27 @@
       </v-toolbar-title>
     </nuxt-link>
     <v-spacer />
-    <ConditionalWrapper :show="!$vuetify.breakpoint.xs">
-      <v-toolbar-items>
-        <v-tabs
-          :slot="$vuetify.breakpoint.xs ? 'extension' : ''"
-          background-color="transparent"
-          class="d-flex justify-center"
-          color="secondary"
-          height="100%"
-          optional
-        >
-          <v-tab
-            v-for="page in pages"
-            :key="page.name"
-            :to="page.url"
-            nuxt
-            v-text="page.name"
-          />
-        </v-tabs>
-      </v-toolbar-items>
-    </ConditionalWrapper>
+    <component
+      :is="$vuetify.breakpoint.xs ? 'template' : 'v-toolbar-items'"
+      v-if="hydrated"
+      :slot="$vuetify.breakpoint.xs ? 'extension' : 'default'"
+    >
+      <v-tabs
+        background-color="transparent"
+        class="d-flex justify-center"
+        color="secondary"
+        height="100%"
+        optional
+      >
+        <v-tab
+          v-for="page in pages"
+          :key="page.name"
+          :to="page.url"
+          nuxt
+          v-text="page.name"
+        />
+      </v-tabs>
+    </component>
     <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
     <!-- <TheDrawer v-model="drawer" /> -->
   </v-app-bar>
@@ -42,14 +43,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ConditionalWrapper from '@/components/global/ConditionalWrapper'
 export default Vue.extend({
-  components: {
-    ConditionalWrapper
-  },
   data() {
     return {
-      drawer: false,
+      drawer: true,
+      hydrated: false,
       icons: [
         'mdi-chess-bishop',
         'mdi-chess-king',
@@ -72,9 +70,11 @@ export default Vue.extend({
   },
   computed: {
     icon(): string {
-      const idx = Math.floor(Math.random() * this.icons.length)
-      return this.icons[idx]
+      return this.icons[Math.floor(Math.random() * this.icons.length)]
     }
+  },
+  mounted() {
+    this.hydrated = true
   }
 })
 </script>

@@ -29,9 +29,9 @@ export default {
       else {
         config.module.rules.push({
           enforce: 'pre',
-          test: /\.(js|ts|vue)$/,
+          exclude: /(node_modules)/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          test: /\.(js|ts|vue)$/
         })
       }
     }

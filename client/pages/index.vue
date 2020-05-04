@@ -1,5 +1,5 @@
 <template>
-  <v-content style="background-color: var(--v-primary-base);">
+  <v-content class="primary">
     <v-container style="height: 100vh;" fluid>
       <v-row align="center">
         <v-col
@@ -8,7 +8,7 @@
           cols="12"
           order-sm="2"
           sm="6"
-          style="color: var(--v-secondary-base); overflow: hidden;"
+          style="color: var(--v-secondary-base);"
         >
           Human
           <br />
@@ -86,7 +86,7 @@ export default Vue.extend({
   data() {
     return {
       length: 5,
-      window: 1
+      window: 0
     }
   }
 })
@@ -94,6 +94,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .active {
-  color: black !important;
+  color: var(--v-secondary-base) !important;
 }
 </style>

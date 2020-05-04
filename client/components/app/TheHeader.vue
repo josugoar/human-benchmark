@@ -15,7 +15,7 @@
       </v-toolbar-title>
     </nuxt-link>
     <v-spacer />
-    <wrapper :show="!$vuetify.breakpoint.xs">
+    <ConditionalWrapper :show="!$vuetify.breakpoint.xs">
       <v-toolbar-items>
         <v-tabs
           :slot="$vuetify.breakpoint.xs ? 'extension' : ''"
@@ -34,18 +34,19 @@
           />
         </v-tabs>
       </v-toolbar-items>
-    </wrapper>
-    <v-app-bar-nav-icon
-      style="color: var(--v-secondary-base);"
-      @click.stop="drawer = !drawer"
-    />
+    </ConditionalWrapper>
+    <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
     <!-- <TheDrawer v-model="drawer" /> -->
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import ConditionalWrapper from '@/components/global/ConditionalWrapper'
 export default Vue.extend({
+  components: {
+    ConditionalWrapper
+  },
   data() {
     return {
       drawer: false,

@@ -21,21 +21,12 @@ export default {
     height: '5px'
   },
   css: ['@/assets/scss/main.scss'],
-  plugins: [
-    {
-      src: '@/plugins/register-global.ts',
-      mode: 'client'
-    },
-    {
-      src: '@/plugins/vue-kinesis.ts',
-      mode: 'client'
-    }
-  ],
+  plugins: ['@/plugins/vue-kinesis.client.ts'],
   build: {
     extend(config, ctx) {
-      if (ctx.isDev) {
+      if (ctx.isDev)
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
-      } else {
+      else {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|ts|vue)$/,
@@ -48,7 +39,7 @@ export default {
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/pwa'],
   axios: {
-    // Axios: https://axios.nuxtjs.org/options
+    // Axios: https://axios.nuxtjs.org
   },
   env: {
     // DotEnv: https://github.com/nuxt-community/dotenv-module

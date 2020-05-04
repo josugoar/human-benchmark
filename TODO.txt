@@ -1,18 +1,12 @@
 .
-├── TODO: Reference (https://www.livechat.com/typing-speed-test/?source_id=typingspeedtest&source_url=https://www.livechat.com/typing-speed-test/&source_type=website#/,
-│                    https://www.humanbenchmark.com/tests/typing)
-├── DONE: (TODO: Change VSCode theme)
 ├── client
+│   ├── TODO: Add parallax effect (v-parallax)
 │   ├── TODO: Add axios GraphQL endpoint
-│   ├── TODO: Add @types directory
 │   ├── TODO: Run tests
-│   ├── TODO: add custom font face
-│   ├── DONE: (TODO: Install "sdras.vue-vscode-snippets")
-│   └── DONE: (TODO: Add service worker cache)
+│   ├── TODO: Add custom font face
 └── server
     ├── model
     │   └── TODO: Research TensorFlow text generation (https://www.tensorflow.org/tutorials/text/text_generation)
     ├── TODO: Migrate to Django (https://docs.djangoproject.com/en/3.0/intro/)
     ├── TODO: Add highscore database
-    ├── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)
-    └── DONE: (TODO: Update server README.md)
+    └── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)

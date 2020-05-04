@@ -18,6 +18,7 @@
     "strict": true,
     "target": "es2018",
     "types": [
+      "./@types",
       "@nuxt/types",
       "@nuxt/vue-app",
       "@nuxtjs/axios/types",

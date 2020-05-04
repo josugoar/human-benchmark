@@ -37,13 +37,16 @@
       </v-tabs>
     </component>
     <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
-    <!-- <TheDrawer v-model="drawer" /> -->
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import TheDrawer from '@/components/app/TheDrawer.vue'
 export default Vue.extend({
+  components: {
+    TheDrawer
+  },
   data() {
     return {
       drawer: true,

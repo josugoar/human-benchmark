@@ -1,5 +1,6 @@
 .
 ├── client
+│   ├── TODO: Remove unused CSS (custom-properties)
 │   ├── TODO: Add textured background (paper)
 │   ├── TODO: Add parallax effect (v-parallax)
 │   ├── TODO: Add axios GraphQL endpoint

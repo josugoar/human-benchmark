@@ -40,9 +40,12 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/pwa'],
   axios: {
     // Axios: https://axios.nuxtjs.org
+    baseURL: process.env.baseURL,
+    https: false
   },
   env: {
     // DotEnv: https://github.com/nuxt-community/dotenv-module
+    baseURL: process.env.BASE_URL || 'http://localhost:3000'
   },
   pwa: {
     // PWA: https://github.com/nuxt-community/pwa-module

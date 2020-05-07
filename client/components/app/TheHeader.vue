@@ -2,12 +2,12 @@
   <v-app-bar color="primary" app dense elevate-on-scroll>
     <nuxt-link class="empty-link" to="/" exact>
       <v-toolbar-title
+        :style="{ color: $vuetify.theme.currentTheme.secondary }"
         class="font-weight-black"
-        style="color: var(--v-secondary-base);"
       >
         <v-icon
           color="secondary"
-          style="vertical-align: inherit"
+          style="vertical-align: inherit;"
           left
           v-text="icon"
         />
@@ -17,18 +17,17 @@
     <v-spacer />
     <component
       :is="$vuetify.breakpoint.xs ? 'template' : 'v-toolbar-items'"
-      v-if="hydrated"
+      v-if="$store.state.hydrated"
       :slot="$vuetify.breakpoint.xs ? 'extension' : 'default'"
     >
       <v-tabs
         background-color="transparent"
         class="d-flex justify-center"
         color="secondary"
-        height="100%"
         optional
       >
         <v-tab
-          v-for="page in pages"
+          v-for="page in $store.state.sources.pages"
           :key="page.name"
           :to="page.url"
           nuxt
@@ -36,21 +35,15 @@
         />
       </v-tabs>
     </component>
-    <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
+    <v-app-bar-nav-icon color="secondary" @click.stop="" />
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import TheDrawer from '@/components/app/TheDrawer.vue'
 export default Vue.extend({
-  components: {
-    TheDrawer
-  },
   data() {
     return {
-      drawer: true,
-      hydrated: false,
       icons: [
         'mdi-chess-bishop',
         'mdi-chess-king',
@@ -58,16 +51,6 @@ export default Vue.extend({
         'mdi-chess-pawn',
         'mdi-chess-queen',
         'mdi-chess-rook'
-      ],
-      pages: [
-        {
-          name: 'Home',
-          url: '/'
-        },
-        {
-          name: 'About',
-          url: '/about'
-        }
       ]
     }
   },
@@ -77,7 +60,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.hydrated = true
+    this.$store.commit('hydrate')
   }
 })
 </script>

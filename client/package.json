@@ -5,6 +5,7 @@
   "author": "JoshGoA",
   "private": true,
   "scripts": {
+    "analyze": "npx nuxt-ts build --a",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",

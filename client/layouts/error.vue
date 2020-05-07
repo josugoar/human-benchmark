@@ -1,8 +1,10 @@
 <template>
   <v-container>
-    <h1 v-if="error.statusCode === 404">{{ pageNotFound }}</h1>
-    <h1 v-else>{{ otherError }}</h1>
-    <nuxt-link to="/">Home</nuxt-link>
+    <h1 v-if="error.statusCode === 404" v-text="pageNotFound" />
+    <h1 v-else v-text="otherError" />
+    <nuxt-link to="/">
+      Home
+    </nuxt-link>
   </v-container>
 </template>
 

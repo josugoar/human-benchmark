@@ -23,6 +23,7 @@ export default {
   css: ['@/assets/scss/main.scss'],
   plugins: ['@/plugins/vue-kinesis.client.ts'],
   build: {
+    babelrc: true,
     extend(config, ctx) {
       if (ctx.isDev)
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
@@ -40,8 +41,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/pwa'],
   axios: {
     // Axios: https://axios.nuxtjs.org
-    baseURL: process.env.baseURL,
-    https: false
+    baseURL: process.env.baseURL
   },
   env: {
     // DotEnv: https://github.com/nuxt-community/dotenv-module
@@ -50,19 +50,17 @@ export default {
   pwa: {
     // PWA: https://github.com/nuxt-community/pwa-module
     icon: {
-      iconFileName: 'main-icon.png',
-      iconSrc: '@/assets/icons/main-icon.png'
+      iconFileName: 'main.png',
+      iconSrc: '@/assets/icons/main.png'
     }
   },
   vuetify: {
     // Vuetify: https://github.com/nuxt-community/vuetify-module
     customVariables: ['@/assets/scss/variables.scss'],
     theme: {
-      options: {
-        customProperties: true
-      },
       themes: {
         light: {
+          // colors.shades.black
           primary: colors.grey.lighten4,
           secondary: colors.grey.darken4,
           accent: colors.amber.accent4,

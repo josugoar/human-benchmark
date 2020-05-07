@@ -33,17 +33,17 @@ export default Vue.extend({
         {
           name: 'Nuxt.js',
           url: 'https://www.nuxtjs.org/',
-          path: 'nuxt-icon.png'
+          path: 'nuxt.png'
         },
         {
           name: 'Django',
           url: 'https://www.djangoproject.com/',
-          path: 'django-icon.png'
+          path: 'django.png'
         },
         {
           name: 'TensorFlow',
           url: 'https://www.tensorflow.org/',
-          path: 'tensorflow-icon.png'
+          path: 'tensorflow.png'
         }
       ]
     }

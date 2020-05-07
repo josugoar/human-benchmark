@@ -1,31 +1,45 @@
 <template>
-  <v-content class="primary">
-    <v-container style="height: 100vh;" fluid>
+  <!-- TODO: Fix background -->
+  <v-content
+    class="primary"
+    style="background: url('images/chess-background.svg'); background-size: cover;"
+  >
+    <v-container style="min-height: 100vh;" fluid>
       <v-row align="center">
         <v-col
           :class="[
-            $vuetify.breakpoint.xs ? 'text-center' : '',
+            'd-flex font-weight-black justify-center text-uppercase',
+            { 'text-center': $vuetify.breakpoint.xs },
             $vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-2'
           ]"
-          class="d-flex font-weight-black justify-center text-uppercase"
+          :style="[
+            'max-width: inherit;',
+            { color: $vuetify.theme.currentTheme.secondary }
+          ]"
           cols="12"
           order-sm="2"
           sm="6"
-          style="color: var(--v-secondary-base); margin: 12px;"
         >
-          Human
-          <br />
-          Benchmark
+          <template v-for="(word, idx) in title">
+            {{ word }}
+            <br :key="idx" />
+          </template>
         </v-col>
         <v-col>
           <v-item-group
-            v-model="window"
+            v-model="count"
             class="d-flex justify-space-around"
             mandatory
           >
-            <v-item v-for="n in length" #default="{ active, toggle }" :key="n">
+            <v-item
+              v-for="window in $store.state.sources.windows"
+              #default="{ active, toggle }"
+              :key="window.icon"
+            >
               <v-tooltip top>
-                <template v-slot:activator="{ on }">
+                {{ window.name }}
+                <template #activator="{ on }">
+                  <!-- TODO: Add selected icon button -->
                   <v-btn
                     :input-value="active"
                     active-class="active"
@@ -38,7 +52,6 @@
                     </v-icon>
                   </v-btn>
                 </template>
-                Lorem ipsum
               </v-tooltip>
             </v-item>
           </v-item-group>
@@ -46,27 +59,31 @@
       </v-row>
       <v-row align="center">
         <v-col>
-          <v-window
-            v-model="window"
-            continuous
-            show-arrows
-            show-arrows-on-hover
-          >
-            <v-window-item v-for="n in length" :key="n">
-              <v-container>
+          <v-window v-model="count" continuous show-arrows show-arrows-on-hover>
+            <v-window-item
+              v-for="window in $store.state.sources.windows"
+              :key="window.icon"
+            >
+              <v-container fluid>
                 <v-row justify="center">
                   <client-only>
+                    <!-- TODO: Fix -->
                     <kinesis-container>
                       <kinesis-element>
-                        <v-icon color="secondary" size="200">
-                          mdi-chess-king
-                        </v-icon>
+                        <v-icon
+                          color="secondary"
+                          size="200"
+                          v-text="window.icon"
+                        />
                       </kinesis-element>
                     </kinesis-container>
                   </client-only>
                 </v-row>
-                <v-row justify="center" style="color: var(--v-secondary-base);">
-                  Lorem Ipsum Dolor Sit Amet
+                <v-row
+                  :style="{ color: $vuetify.theme.currentTheme.secondary }"
+                  justify="center"
+                >
+                  {{ window.name }}
                 </v-row>
               </v-container>
             </v-window-item>
@@ -90,8 +107,12 @@ export default Vue.extend({
   name: 'Home',
   data() {
     return {
-      length: 5,
-      window: 0
+      count: 0
+    }
+  },
+  computed: {
+    title() {
+      return typeof document === 'undefined' ? [] : document.title.split(' ')
     }
   }
 })

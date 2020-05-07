@@ -21,11 +21,9 @@ export default Vue.extend({
   },
   data() {
     return {
+      // Move to Vuex
       drawer: false
     }
-  },
-  mounted() {
-    this.$axios.get('/a')
   }
 })
 </script>

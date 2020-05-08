@@ -23,7 +23,7 @@
   "launch": {
     "compounds": [
       {
-        "name": "Type-Test: Nuxt.js, Django",
+        "name": "Human-Benchmark: Nuxt.js, Django",
         "configurations": [
           "Python: Django Server",
           "Node: Nuxt.js Server",

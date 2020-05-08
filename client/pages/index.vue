@@ -101,7 +101,7 @@ export default Vue.extend({
   data() {
     return {
       count: 0,
-      windows: {} as { icon: string; msg: string; name: string }[]
+      windows: {} as { icon: string; name: string; text: string }[]
     }
   },
   computed: {
@@ -112,23 +112,23 @@ export default Vue.extend({
     this.windows = [
       {
         icon: this.active.king,
-        msg: 'Lorem Ipsum Dolor Sit Amet',
-        name: 'Lorem'
+        name: 'Lorem',
+        text: 'Lorem Ipsum Dolor Sit Amet'
       },
       {
         icon: this.active.bishop,
-        msg: 'Lorem Ipsum Dolor Sit Amet',
-        name: 'Lorem'
+        name: 'Lorem',
+        text: 'Lorem Ipsum Dolor Sit Amet'
       },
       {
         icon: this.active.knight,
-        msg: 'Lorem Ipsum Dolor Sit Amet',
-        name: 'Lorem'
+        name: 'Lorem',
+        text: 'Lorem Ipsum Dolor Sit Amet'
       },
       {
         icon: this.active.queen,
-        msg: 'Lorem Ipsum Dolor Sit Amet',
-        name: 'Lorem'
+        name: 'Lorem',
+        text: 'Lorem Ipsum Dolor Sit Amet'
       }
     ]
   }

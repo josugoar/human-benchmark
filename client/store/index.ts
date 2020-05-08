@@ -1,6 +1,5 @@
 export const state = () => ({
   env: {
-    content: process.env.content,
     title: process.env.title
   },
   hydrated: false

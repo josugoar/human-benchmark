@@ -5,9 +5,7 @@
         <v-img src="https://via.placeholder.com/150" />
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title>
-          Lorem Ipsum
-        </v-list-item-title>
+        <v-list-item-title v-text="text" />
       </v-list-item-content>
     </v-list-item>
   </v-navigation-drawer>
@@ -15,5 +13,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      text: 'Lorem Ipsum'
+    }
+  }
+})
 </script>

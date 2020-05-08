@@ -17,23 +17,20 @@ export default {
     }
   },
   css: ['@/assets/scss/main.scss'],
-  env: {
-    content: 'Powered by Nuxt.js, Django and TensorFlow',
-    title: 'Human Benchmark'
-  },
+  env: { title: process.env.title },
   head: {
     link: [{ href: 'favicon/favicon.ico', rel: 'icon', type: 'image/x-icon' }],
     meta: [
       { charset: 'utf-8' },
       { content: 'width=device-width, initial-scale=1', name: 'viewport' },
       {
-        content: process.env.content || '',
+        content: process.env.npm_package_description || '',
         hid: 'description',
         name: 'description'
       }
     ],
-    title: process.env.title,
-    titleTemplate: process.env.title
+    title: 'Human Benchmark',
+    titleTemplate: process.env.title || ''
   },
   loading: { color: colors.shades.black },
   plugins: ['@/plugins/vue-kinesis.client.ts'],

@@ -35,7 +35,7 @@
         />
       </v-tabs>
     </component>
-    <v-app-bar-nav-icon color="secondary" @click.stop="" />
+    <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
   </v-app-bar>
 </template>
 
@@ -43,6 +43,12 @@
 import Vue from 'vue'
 import { mapGetters, mapState } from 'vuex'
 export default Vue.extend({
+  props: {
+    drawer: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       tabs: [

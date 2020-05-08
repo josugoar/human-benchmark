@@ -14,7 +14,7 @@
           <v-avatar size="25" tile>
             <v-img
               :alt="reference.name"
-              :src="require(`@/assets/icons/${reference.path}`)"
+              :src="require(`@/assets/icons/${reference.icon}`)"
               contain
             />
           </v-avatar>
@@ -31,19 +31,19 @@ export default Vue.extend({
     return {
       references: [
         {
+          icon: 'nuxt.png',
           name: 'Nuxt.js',
-          url: 'https://www.nuxtjs.org/',
-          path: 'nuxt.png'
+          url: 'https://www.nuxtjs.org/'
         },
         {
+          icon: 'django.png',
           name: 'Django',
-          url: 'https://www.djangoproject.com/',
-          path: 'django.png'
+          url: 'https://www.djangoproject.com/'
         },
         {
+          icon: 'tensorflow.png',
           name: 'TensorFlow',
-          url: 'https://www.tensorflow.org/',
-          path: 'tensorflow.png'
+          url: 'https://www.tensorflow.org/'
         }
       ]
     }

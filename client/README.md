@@ -5,6 +5,7 @@
 $ npm install
 
 # [development]
+$ npm run analyze
 $ npm run dev
 
 # [production]

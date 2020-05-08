@@ -9,15 +9,15 @@
           color="secondary"
           style="vertical-align: inherit;"
           left
-          v-text="icon"
+          v-text="rand"
         />
-        Human Benchmark
+        {{ env.title }}
       </v-toolbar-title>
     </nuxt-link>
     <v-spacer />
     <component
       :is="$vuetify.breakpoint.xs ? 'template' : 'v-toolbar-items'"
-      v-if="$store.state.hydrated"
+      v-if="hydrated"
       :slot="$vuetify.breakpoint.xs ? 'extension' : 'default'"
     >
       <v-tabs
@@ -27,11 +27,11 @@
         optional
       >
         <v-tab
-          v-for="page in $store.state.sources.pages"
-          :key="page.name"
-          :to="page.url"
+          v-for="tab in tabs"
+          :key="tab.name"
+          :to="tab.url"
           nuxt
-          v-text="page.name"
+          v-text="tab.name"
         />
       </v-tabs>
     </component>
@@ -41,26 +41,25 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters, mapState } from 'vuex'
 export default Vue.extend({
   data() {
     return {
-      icons: [
-        'mdi-chess-bishop',
-        'mdi-chess-king',
-        'mdi-chess-knight',
-        'mdi-chess-pawn',
-        'mdi-chess-queen',
-        'mdi-chess-rook'
+      tabs: [
+        {
+          name: 'Home',
+          url: '/'
+        },
+        {
+          name: 'About',
+          url: '/about'
+        }
       ]
     }
   },
   computed: {
-    icon(): string {
-      return this.icons[Math.floor(Math.random() * this.icons.length)]
-    }
-  },
-  mounted() {
-    this.$store.commit('hydrate')
+    ...mapGetters('icons', ['rand']),
+    ...mapState(['env', 'hydrated'])
   }
 })
 </script>

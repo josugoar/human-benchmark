@@ -16,7 +16,7 @@
     },
     "sourceMap": true,
     "strict": true,
-    "target": "es2018",
+    "target": "esnext",
     "types": [
       "./@types",
       "@nuxt/types",

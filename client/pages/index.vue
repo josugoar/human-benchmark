@@ -2,13 +2,13 @@
   <!-- TODO: Fix background -->
   <v-content
     class="primary"
-    style="background: url('images/chess-background.svg'); background-size: cover;"
+    style="background: url('images/chess-background.svg') center; background-size: cover;"
   >
     <v-container style="min-height: 100vh;" fluid>
       <v-row align="center">
         <v-col
           :class="[
-            'd-flex font-weight-black justify-center text-uppercase',
+            'd-flex font-weight-black justify-center resizable-text text-uppercase',
             { 'text-center': $vuetify.breakpoint.xs },
             $vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-2'
           ]"
@@ -20,7 +20,7 @@
           order-sm="2"
           sm="6"
         >
-          <template v-for="(word, idx) in title">
+          <template v-for="(word, idx) in env.title.split(' ')">
             {{ word }}
             <br :key="idx" />
           </template>
@@ -32,14 +32,13 @@
             mandatory
           >
             <v-item
-              v-for="window in $store.state.sources.windows"
+              v-for="window in windows"
               #default="{ active, toggle }"
               :key="window.icon"
             >
               <v-tooltip top>
                 {{ window.name }}
                 <template #activator="{ on }">
-                  <!-- TODO: Add selected icon button -->
                   <v-btn
                     :input-value="active"
                     active-class="active"
@@ -47,9 +46,7 @@
                     v-on="on"
                     @click.stop="toggle"
                   >
-                    <v-icon>
-                      mdi-record
-                    </v-icon>
+                    <v-icon v-text="active ? window.icon : inactive" />
                   </v-btn>
                 </template>
               </v-tooltip>
@@ -60,14 +57,10 @@
       <v-row align="center">
         <v-col>
           <v-window v-model="count" continuous show-arrows show-arrows-on-hover>
-            <v-window-item
-              v-for="window in $store.state.sources.windows"
-              :key="window.icon"
-            >
+            <v-window-item v-for="window in windows" :key="window.icon">
               <v-container fluid>
                 <v-row justify="center">
                   <client-only>
-                    <!-- TODO: Fix -->
                     <kinesis-container>
                       <kinesis-element>
                         <v-icon
@@ -103,22 +96,51 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 export default Vue.extend({
-  name: 'Home',
   data() {
     return {
-      count: 0
+      count: 0,
+      windows: {} as { icon: string; msg: string; name: string }[]
     }
   },
   computed: {
-    title() {
-      return typeof document === 'undefined' ? [] : document.title.split(' ')
-    }
+    ...mapState(['env']),
+    ...mapState('icons', ['active', 'inactive'])
+  },
+  mounted() {
+    this.windows = [
+      {
+        icon: this.active.king,
+        msg: 'Lorem Ipsum Dolor Sit Amet',
+        name: 'Lorem'
+      },
+      {
+        icon: this.active.bishop,
+        msg: 'Lorem Ipsum Dolor Sit Amet',
+        name: 'Lorem'
+      },
+      {
+        icon: this.active.knight,
+        msg: 'Lorem Ipsum Dolor Sit Amet',
+        name: 'Lorem'
+      },
+      {
+        icon: this.active.queen,
+        msg: 'Lorem Ipsum Dolor Sit Amet',
+        name: 'Lorem'
+      }
+    ]
   }
 })
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 400px) {
+  .resizable-text {
+    font-size: 2.75rem !important;
+  }
+}
 .active {
   color: var(--v-secondary-base) !important;
 }

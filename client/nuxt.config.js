@@ -1,29 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
 
 export default {
-  mode: 'universal',
-  head: {
-    title: 'Human Benchmark',
-    titleTemplate: process.env.title || '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon/favicon.ico' }]
-  },
-  loading: {
-    color: '#fff',
-    height: '5px'
-  },
-  css: ['@/assets/scss/main.scss'],
-  plugins: ['@/plugins/vue-kinesis.client.ts'],
   build: {
-    babelrc: true,
     extend(config, ctx) {
       if (ctx.isDev)
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
@@ -37,39 +16,43 @@ export default {
       }
     }
   },
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/pwa'],
-  axios: {
-    // Axios: https://axios.nuxtjs.org
-    baseURL: process.env.baseURL
+  css: ['@/assets/scss/main.scss'],
+  head: {
+    link: [{ href: 'favicon/favicon.ico', rel: 'icon', type: 'image/x-icon' }],
+    meta: [
+      { charset: 'utf-8' },
+      { content: 'width=device-width, initial-scale=1', name: 'viewport' },
+      {
+        content: process.env.CONTENT || '',
+        hid: 'description',
+        name: 'description'
+      }
+    ],
+    title: process.env.TITLE,
+    titleTemplate: process.env.TITLE
   },
-  env: {
-    // DotEnv: https://github.com/nuxt-community/dotenv-module
-    baseURL: process.env.BASE_URL || 'http://localhost:3000'
-  },
-  pwa: {
-    // PWA: https://github.com/nuxt-community/pwa-module
-    icon: {
-      iconFileName: 'main.png',
-      iconSrc: '@/assets/icons/main.png'
-    }
-  },
-  vuetify: {
-    // Vuetify: https://github.com/nuxt-community/vuetify-module
-    customVariables: ['@/assets/scss/variables.scss'],
-    theme: {
-      themes: {
-        light: {
-          // colors.shades.black
-          primary: colors.grey.lighten4,
-          secondary: colors.grey.darken4,
-          accent: colors.amber.accent4,
-          info: colors.teal.accent3,
-          warning: colors.orange.accent3,
-          error: colors.red.accent3,
-          success: colors.green.accent3
+  loading: { color: colors.shades.black },
+  plugins: ['@/plugins/vue-kinesis.client.ts'],
+  modules: [
+    '@nuxtjs/pwa',
+    ['@nuxtjs/axios', { baseURL: process.env.BASE_URL }]
+  ],
+  buildModules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/dotenv',
+    [
+      '@nuxtjs/vuetify',
+      {
+        customVariables: ['@/assets/scss/variables.scss'],
+        theme: {
+          themes: {
+            light: {
+              primary: colors.shades.white,
+              secondary: colors.shades.black
+            }
+          }
         }
       }
-    }
-  }
+    ]
+  ]
 }

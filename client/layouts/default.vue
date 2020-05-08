@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <TheHeader />
-    <!-- TODO: ADD DRAWER -->
     <!-- <TheDrawer v-model="drawer" /> -->
     <nuxt />
     <TheFooter />
@@ -21,9 +20,11 @@ export default Vue.extend({
   },
   data() {
     return {
-      // Move to Vuex
       drawer: false
     }
+  },
+  mounted() {
+    this.$store.commit('hydrate')
   }
 })
 </script>

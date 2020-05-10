@@ -1,6 +1,6 @@
 <template>
   <v-app-bar color="primary" app dense elevate-on-scroll>
-    <nuxt-link class="empty-link" to="/" exact>
+    <nuxt-link to="/" exact>
       <v-toolbar-title
         :style="{ color: $vuetify.theme.currentTheme.secondary }"
         class="font-weight-black"
@@ -33,7 +33,7 @@
       </v-tabs>
     </component>
     <v-app-bar-nav-icon
-      aria-label="Drawer"
+      aria-label="Toggle"
       color="secondary"
       @click.stop="emitToggle"
     />
@@ -69,10 +69,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.empty-link {
-  color: inherit;
-  text-decoration: none;
-}
-</style>

@@ -6,8 +6,8 @@
         <v-btn
           v-for="reference in references"
           :key="reference.name"
+          :aria-label="reference.name"
           :href="reference.url"
-          aria-label="Reference"
           class="ml-1"
           rel="noopener"
           target="_blank"

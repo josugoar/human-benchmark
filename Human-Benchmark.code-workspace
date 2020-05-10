@@ -43,22 +43,22 @@
         "type": "node",
         "request": "launch",
         "args": ["dev"],
-        "cwd": "${workspaceFolder}/client",
+        "cwd": "${workspaceFolder}/src/client",
         "osx": {
-          "program": "${workspaceFolder}/client/node_modules/.bin/nuxt"
+          "program": "${workspaceFolder}/src/client/node_modules/.bin/nuxt"
         },
         "linux": {
-          "program": "${workspaceFolder}/client/node_modules/.bin/nuxt"
+          "program": "${workspaceFolder}/src/client/node_modules/.bin/nuxt"
         },
         "windows": {
-          "program": "${workspaceFolder}/client/node_modules/nuxt/bin/nuxt.js"
+          "program": "${workspaceFolder}/src/client/node_modules/nuxt/bin/nuxt.js"
         }
       },
       {
         "name": "Python: Django Server",
         "type": "python",
         "request": "launch",
-        "program": "${workspaceFolder}/server/manage.py",
+        "program": "${workspaceFolder}/src/server/manage.py",
         "args": ["runserver", "--noreload"],
         "django": true
       }
@@ -67,8 +67,8 @@
   },
   "settings": {
     "editor.formatOnSave": true,
-    "eslint.workingDirectories": ["./client", "./server"],
-    "python.pythonPath": "${workspaceFolder}/server/.venv/Scripts/python.exe",
+    "eslint.workingDirectories": ["./src/client", "./src/server"],
+    "python.pythonPath": "${workspaceFolder}/src/server/.venv/Scripts/python.exe",
     "vetur.format.enable": false
   }
 }

@@ -29,7 +29,7 @@
             mandatory
           >
             <v-item
-              v-for="window in windows"
+              v-for="window in windows.items"
               #default="{ active, toggle }"
               :key="window.icon"
             >
@@ -37,14 +37,14 @@
                 {{ window.name }}
                 <template #activator="{ on }">
                   <v-btn
+                    :aria-label="window.name"
                     :input-value="active"
                     active-class="active"
-                    aria-label="Window"
                     icon
                     v-on="on"
                     @click.stop="toggle"
                   >
-                    <v-icon v-text="inactive" />
+                    <v-icon size="25" v-text="windows.selector" />
                   </v-btn>
                 </template>
               </v-tooltip>
@@ -55,7 +55,7 @@
       <v-row align="center">
         <v-col>
           <v-window v-model="count" continuous show-arrows show-arrows-on-hover>
-            <v-window-item v-for="window in windows" :key="window.icon">
+            <v-window-item v-for="window in windows.items" :key="window.icon">
               <v-container fluid>
                 <v-row justify="center">
                   <client-only>
@@ -99,36 +99,35 @@ export default Vue.extend({
   data() {
     return {
       count: 0,
-      windows: {} as { icon: string; name: string; text: string }[]
+      windows: {
+        selector: 'mdi-record',
+        items: [
+          {
+            icon: 'mdi-chess-king',
+            name: 'Lorem',
+            text: 'Lorem Ipsum Dolor Sit Amet'
+          },
+          {
+            icon: 'mdi-chess-bishop',
+            name: 'Lorem',
+            text: 'Lorem Ipsum Dolor Sit Amet'
+          },
+          {
+            icon: 'mdi-chess-knight',
+            name: 'Lorem',
+            text: 'Lorem Ipsum Dolor Sit Amet'
+          },
+          {
+            icon: 'mdi-chess-queen',
+            name: 'Lorem',
+            text: 'Lorem Ipsum Dolor Sit Amet'
+          }
+        ]
+      }
     }
   },
   computed: {
-    ...mapState(['env']),
-    ...mapState('icons', ['active', 'inactive'])
-  },
-  mounted() {
-    this.windows = [
-      {
-        icon: this.active.king,
-        name: 'Lorem',
-        text: 'Lorem Ipsum Dolor Sit Amet'
-      },
-      {
-        icon: this.active.bishop,
-        name: 'Lorem',
-        text: 'Lorem Ipsum Dolor Sit Amet'
-      },
-      {
-        icon: this.active.knight,
-        name: 'Lorem',
-        text: 'Lorem Ipsum Dolor Sit Amet'
-      },
-      {
-        icon: this.active.queen,
-        name: 'Lorem',
-        text: 'Lorem Ipsum Dolor Sit Amet'
-      }
-    ]
+    ...mapState(['env'])
   }
 })
 </script>
@@ -143,7 +142,7 @@ export default Vue.extend({
   color: var(--v-secondary-base) !important;
 }
 .bg {
-  background: url('/images/chess-background.svg') center;
+  background: url('/images/chess-background-2.svg') center;
   background-size: cover;
 }
 </style>

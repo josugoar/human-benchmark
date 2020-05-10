@@ -5,12 +5,9 @@
         :style="{ color: $vuetify.theme.currentTheme.secondary }"
         class="font-weight-black"
       >
-        <v-icon
-          color="secondary"
-          style="vertical-align: inherit;"
-          left
-          v-text="rand"
-        />
+        <v-avatar size="30" style="vertical-align: bottom;" tile>
+          <v-img alt="Icon" src="/icon.png" contain />
+        </v-avatar>
         {{ env.title }}
       </v-toolbar-title>
     </nuxt-link>
@@ -38,21 +35,16 @@
     <v-app-bar-nav-icon
       aria-label="Drawer"
       color="secondary"
-      @click.stop="drawer = !drawer"
+      @click.stop="emitToggle"
     />
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
+import { EventBus } from '@/components/EventBus'
 export default Vue.extend({
-  props: {
-    drawer: {
-      type: Boolean,
-      default: false
-    }
-  },
   data() {
     return {
       tabs: [
@@ -68,8 +60,12 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapGetters('icons', ['rand']),
     ...mapState(['env', 'hydrated'])
+  },
+  methods: {
+    emitToggle() {
+      EventBus.$emit('toggle')
+    }
   }
 })
 </script>

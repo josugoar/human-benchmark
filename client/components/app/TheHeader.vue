@@ -35,7 +35,11 @@
         />
       </v-tabs>
     </component>
-    <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
+    <v-app-bar-nav-icon
+      aria-label="Drawer"
+      color="secondary"
+      @click.stop="drawer = !drawer"
+    />
   </v-app-bar>
 </template>
 

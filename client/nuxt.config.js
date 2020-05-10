@@ -14,10 +14,11 @@ export default {
           test: /\.(js|ts|vue)$/
         })
       }
-    }
+    },
+    optimizeCSS: true
   },
   css: ['@/assets/scss/main.scss'],
-  env: { title: process.env.title },
+  env: { title: 'Human Benchmark' },
   head: {
     link: [{ href: 'favicon/favicon.ico', rel: 'icon', type: 'image/x-icon' }],
     meta: [
@@ -30,10 +31,17 @@ export default {
       }
     ],
     title: 'Human Benchmark',
-    titleTemplate: process.env.title || ''
+    titleTemplate: process.env.title
   },
   loading: { color: colors.shades.black },
   plugins: ['@/plugins/vue-kinesis.client.ts'],
+  render: {
+    push: true,
+    pushAssets: (_req, _res, publicPath, preloadFiles) =>
+      preloadFiles
+        .filter((f) => f.asType === 'script' && f.file === 'runtime.js')
+        .map((f) => `<${publicPath}${f.file}>; rel=preload; as=${f.asType}`)
+  },
   modules: [
     '@nuxtjs/pwa',
     ['@nuxtjs/axios', { baseURL: process.env.BASE_URL }]

@@ -2,10 +2,10 @@
 ├── client
 │   ├── TODO: Remove unused CSS (custom-properties)
 │   ├── TODO: Add textured background (paper)
+│   ├── TODO: Add multiple sized icons
 │   ├── TODO: Add parallax effect (v-parallax)
 │   ├── TODO: Add axios GraphQL endpoint
 │   ├── TODO: Run tests
-│   ├── TODO: Add custom font face
 └── server
     ├── model
     │   └── TODO: Research TensorFlow text generation (https://www.tensorflow.org/tutorials/text/text_generation)

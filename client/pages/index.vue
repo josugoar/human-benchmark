@@ -1,9 +1,6 @@
 <template>
   <!-- TODO: Fix background -->
-  <v-content
-    class="primary"
-    style="background: url('images/chess-background.svg') center; background-size: cover;"
-  >
+  <v-content class="bg primary">
     <v-container style="min-height: 100vh;" fluid>
       <v-row align="center">
         <v-col
@@ -42,11 +39,12 @@
                   <v-btn
                     :input-value="active"
                     active-class="active"
+                    aria-label="Window"
                     icon
                     v-on="on"
                     @click.stop="toggle"
                   >
-                    <v-icon v-text="active ? window.icon : inactive" />
+                    <v-icon v-text="inactive" />
                   </v-btn>
                 </template>
               </v-tooltip>
@@ -85,7 +83,7 @@
       </v-row>
     </v-container>
     <!-- <v-fab-transition>
-      <v-btn absolute fab bottom right>
+      <v-btn aria-label="Top" absolute fab bottom right>
         <v-icon>
           mdi-arrow-down-thick
         </v-icon>
@@ -138,10 +136,14 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @media (max-width: 400px) {
   .resizable-text {
-    font-size: 2.75rem !important;
+    font-size: 2.25rem !important;
   }
 }
 .active {
   color: var(--v-secondary-base) !important;
+}
+.bg {
+  background: url('/images/chess-background.svg') center;
+  background-size: cover;
 }
 </style>

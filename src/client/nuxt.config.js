@@ -57,7 +57,13 @@ export default {
           themes: {
             light: {
               primary: colors.shades.white,
-              secondary: colors.shades.black
+              secondary: colors.shades.black,
+              accent: colors.grey
+            },
+            dark: {
+              primary: colors.grey.lighten3,
+              secondary: colors.grey.darken3,
+              accent: colors.grey
             }
           }
         }

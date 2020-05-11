@@ -1,6 +1,6 @@
 <template>
   <v-content class="primary">
-    <v-container v-if="hydrated" class="bg" fluid>
+    <v-container class="bg" fluid>
       <v-row align="center">
         <v-col
           :class="[
@@ -28,22 +28,22 @@
             mandatory
           >
             <v-item
-              v-for="item in window.items"
+              v-for="window in windows"
               #default="{ active, toggle }"
-              :key="item.icon"
+              :key="window.icon"
             >
               <v-tooltip top>
-                {{ item.name }}
+                {{ window.name }}
                 <template #activator="{ on }">
                   <v-btn
-                    :aria-label="item.name"
+                    :aria-label="window.name"
                     :input-value="active"
                     active-class="active"
                     icon
                     v-on="on"
                     @click.stop="toggle"
                   >
-                    <v-icon size="25" v-text="window.selector" />
+                    <v-icon size="25">mdi-record</v-icon>
                   </v-btn>
                 </template>
               </v-tooltip>
@@ -54,7 +54,7 @@
       <v-row align="center">
         <v-col>
           <v-window v-model="count" continuous show-arrows show-arrows-on-hover>
-            <v-window-item v-for="item in window.items" :key="item.icon">
+            <v-window-item v-for="window in windows" :key="window.icon">
               <v-container fluid>
                 <v-row justify="center">
                   <client-only>
@@ -63,7 +63,7 @@
                         <v-icon
                           color="secondary"
                           size="200"
-                          v-text="item.icon"
+                          v-text="window.icon"
                         />
                       </kinesis-element>
                     </kinesis-container>
@@ -73,7 +73,7 @@
                   :style="{ color: $vuetify.theme.currentTheme.secondary }"
                   justify="center"
                 >
-                  {{ item.name }}
+                  {{ window.name }}
                 </v-row>
               </v-container>
             </v-window-item>
@@ -81,21 +81,12 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-skeleton-loader
-      v-else
-      class="mt-10 mx-10"
-      style="margin-top: 100px"
-      type="table-heading, card-heading, image"
-      light
-    />
-    <v-sheet height="1000" />
-    <!-- <v-fab-transition>
+    <v-sheet color="accent" height="1000" />
+    <v-fab-transition>
       <v-btn aria-label="Top" absolute fab bottom right>
-        <v-icon>
-          mdi-arrow-down-thick
-        </v-icon>
+        <v-icon>mdi-arrow-up-thick</v-icon>
       </v-btn>
-    </v-fab-transition> -->
+    </v-fab-transition>
   </v-content>
 </template>
 
@@ -106,31 +97,28 @@ export default Vue.extend({
   data() {
     return {
       count: 0,
-      window: {
-        selector: 'mdi-record',
-        items: [
-          {
-            icon: 'mdi-chess-king',
-            name: 'Lorem',
-            text: 'Lorem Ipsum Dolor Sit Amet'
-          },
-          {
-            icon: 'mdi-chess-bishop',
-            name: 'Lorem',
-            text: 'Lorem Ipsum Dolor Sit Amet'
-          },
-          {
-            icon: 'mdi-chess-knight',
-            name: 'Lorem',
-            text: 'Lorem Ipsum Dolor Sit Amet'
-          },
-          {
-            icon: 'mdi-chess-queen',
-            name: 'Lorem',
-            text: 'Lorem Ipsum Dolor Sit Amet'
-          }
-        ]
-      }
+      windows: [
+        {
+          icon: 'mdi-chess-king',
+          name: 'Classic',
+          text: 'Lorem Ipsum Dolor Sit Amet'
+        },
+        {
+          icon: 'mdi-chess-queen',
+          name: 'Blitz',
+          text: 'Lorem Ipsum Dolor Sit Amet'
+        },
+        {
+          icon: 'mdi-chess-bishop',
+          name: 'Lorem',
+          text: 'Lorem Ipsum Dolor Sit Amet'
+        },
+        {
+          icon: 'mdi-chess-knight',
+          name: 'Lorem',
+          text: 'Lorem Ipsum Dolor Sit Amet'
+        }
+      ]
     }
   },
   computed: {

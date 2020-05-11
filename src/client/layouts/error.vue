@@ -1,8 +1,8 @@
 <template>
   <v-container style="text-align: center;">
-    <h1 v-if="error.statusCode === 404" v-text="log.notFound" />
-    <h1 v-else v-text="log.other" />
-    <nuxt-link to="/" exact v-text="text" />
+    <h1 v-if="error.statusCode === 404" v-text="notFound" />
+    <h1 v-else v-text="otherError" />
+    <nuxt-link to="/" exact>Return</nuxt-link>
   </v-container>
 </template>
 
@@ -18,11 +18,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      log: {
-        notFound: '404 Not Found',
-        other: 'An error occurred'
-      },
-      text: 'Return'
+      notFound: '404 Not Found',
+      otherError: 'An error occurred'
     }
   },
   head() {

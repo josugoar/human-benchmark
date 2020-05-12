@@ -33,9 +33,12 @@
                 {{ window.name }}
                 <template #activator="{ on }">
                   <v-btn
+                    :active-class="
+                      $vuetify.theme.dark ? 'active-dark' : 'active-light'
+                    "
                     :aria-label="window.name"
                     :input-value="active"
-                    active-class="active"
+                    color="accent"
                     icon
                     v-on="on"
                     @click.stop="toggle"
@@ -127,9 +130,13 @@ export default Vue.extend({
     font-size: 2.25rem !important;
   }
 }
-// TODO: Fix
-.active {
-  color: var(--v-secondary-base) !important;
+button {
+  &.active-light {
+    color: black !important;
+  }
+  &.active-dark {
+    color: white !important;
+  }
 }
 .background {
   background: url('/images/chess-background.svg') center;

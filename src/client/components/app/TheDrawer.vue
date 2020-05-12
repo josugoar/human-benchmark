@@ -2,7 +2,7 @@
   <v-navigation-drawer v-model="drawer" app temporary>
     <v-list-item>
       <v-list-item-avatar>
-        <v-img src="https://via.placeholder.com/150" />
+        <v-img alt="Avatar" src="https://via.placeholder.com/150" />
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title>Lorem Ipsum</v-list-item-title>

@@ -1,6 +1,6 @@
 <template>
   <v-content class="primary">
-    <v-container class="bg" fluid>
+    <v-container class="background" fluid>
       <v-row align="center">
         <v-col
           :class="[
@@ -8,13 +8,10 @@
             { 'text-center': $vuetify.breakpoint.xs },
             $vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-2'
           ]"
-          :style="[
-            'max-width: inherit;',
-            { color: $vuetify.theme.currentTheme.secondary }
-          ]"
           cols="12"
           order-sm="2"
           sm="6"
+          style="max-width: inherit;"
         >
           <template v-for="(word, idx) in env.title.split(' ')">
             {{ word }}
@@ -69,10 +66,7 @@
                     </kinesis-container>
                   </client-only>
                 </v-row>
-                <v-row
-                  :style="{ color: $vuetify.theme.currentTheme.secondary }"
-                  justify="center"
-                >
+                <v-row justify="center">
                   {{ window.name }}
                 </v-row>
               </v-container>
@@ -133,11 +127,12 @@ export default Vue.extend({
     font-size: 2.25rem !important;
   }
 }
+// TODO: Fix
 .active {
   color: var(--v-secondary-base) !important;
 }
-.bg {
-  background: url('/images/chess-background-2.svg') center;
+.background {
+  background: url('/images/chess-background.svg') center;
   background-size: cover;
 }
 </style>

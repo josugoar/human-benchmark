@@ -35,13 +35,6 @@ export default {
   },
   loading: { color: colors.shades.black },
   plugins: ['@/plugins/vue-kinesis.client.ts'],
-  render: {
-    push: true,
-    pushAssets: (_req, _res, publicPath, preloadFiles) =>
-      preloadFiles
-        .filter((f) => f.asType === 'script' && f.file === 'runtime.js')
-        .map((f) => `<${publicPath}${f.file}>; rel=preload; as=${f.asType}`)
-  },
   modules: [
     '@nuxtjs/pwa',
     ['@nuxtjs/axios', { baseURL: process.env.BASE_URL }]
@@ -56,14 +49,16 @@ export default {
         theme: {
           themes: {
             light: {
-              primary: colors.shades.white,
-              secondary: colors.shades.black,
-              accent: colors.grey
+              primary: colors.grey.lighten4,
+              secondary: colors.grey.darken4,
+              accent: colors.grey.base,
+              anchor: 'inherit'
             },
             dark: {
-              primary: colors.grey.lighten3,
-              secondary: colors.grey.darken3,
-              accent: colors.grey
+              primary: colors.grey.darken4,
+              secondary: colors.grey.lighten4,
+              accent: colors.grey.base,
+              anchor: 'inherit'
             }
           }
         }

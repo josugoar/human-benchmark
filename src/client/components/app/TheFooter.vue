@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute app>
+  <v-footer class="primary" absolute app>
     <v-container>
       <v-row align="center" justify="center">
         Powered by

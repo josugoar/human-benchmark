@@ -1,12 +1,9 @@
 <template>
   <v-app-bar color="primary" app dense elevate-on-scroll>
     <nuxt-link to="/" exact>
-      <v-toolbar-title
-        :style="{ color: $vuetify.theme.currentTheme.secondary }"
-        class="font-weight-black"
-      >
+      <v-toolbar-title class="font-weight-black">
         <v-avatar size="30" style="vertical-align: bottom;" tile>
-          <v-img alt="Icon" src="/icon.png" contain />
+          <v-img :src="icon" alt="Icon" contain />
         </v-avatar>
         {{ env.title }}
       </v-toolbar-title>
@@ -60,7 +57,12 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapState(['env', 'hydrated'])
+    ...mapState(['env', 'hydrated']),
+    icon() {
+      return require(`@/assets/icons/main/${
+        this.$vuetify.theme.dark ? 'dark.png' : 'light.png'
+      }`)
+    }
   },
   methods: {
     emitToggle() {

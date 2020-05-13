@@ -1,13 +1,26 @@
 <template>
-  <v-app-bar color="primary" app dense elevate-on-scroll>
-    <nuxt-link to="/" exact>
-      <v-toolbar-title class="font-weight-black">
+  <v-app-bar color="primary" app elevate-on-scroll>
+    <v-app-bar-nav-icon
+      aria-label="Drawer"
+      color="secondary"
+      @click.stop="emitToggle"
+    />
+    <v-toolbar-title class="font-weight-black">
+      <nuxt-link to="/" exact>
         <v-avatar size="30" style="vertical-align: bottom;" tile>
-          <v-img :src="icon" alt="Icon" contain />
+          <v-img
+            :src="
+              require(`@/assets/icons/main/${
+                $vuetify.theme.dark ? 'dark.png' : 'light.png'
+              }`)
+            "
+            alt="Icon"
+            contain
+          />
         </v-avatar>
         {{ env.title }}
-      </v-toolbar-title>
-    </nuxt-link>
+      </nuxt-link>
+    </v-toolbar-title>
     <v-spacer />
     <component
       :is="$vuetify.breakpoint.xs ? 'template' : 'v-toolbar-items'"
@@ -18,6 +31,7 @@
         background-color="transparent"
         class="d-flex justify-center"
         color="secondary"
+        height="100%"
         optional
       >
         <v-tab
@@ -29,45 +43,31 @@
         />
       </v-tabs>
     </component>
-    <v-app-bar-nav-icon
-      aria-label="Toggle"
-      color="secondary"
-      @click.stop="emitToggle"
-    />
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { EventBus } from '@/components/EventBus'
+import { EventBus } from '@/components/utils/EventBus'
 export default Vue.extend({
-  data() {
-    return {
-      tabs: [
-        {
-          name: 'Home',
-          url: '/'
-        },
-        {
-          name: 'About',
-          url: '/about'
-        }
-      ]
-    }
-  },
+  data: () => ({
+    tabs: [
+      {
+        name: 'Home',
+        url: '/'
+      },
+      {
+        name: 'About',
+        url: '/about'
+      }
+    ]
+  }),
   computed: {
-    ...mapState(['env', 'hydrated']),
-    icon() {
-      return require(`@/assets/icons/main/${
-        this.$vuetify.theme.dark ? 'dark.png' : 'light.png'
-      }`)
-    }
+    ...mapState(['env', 'hydrated'])
   },
   methods: {
-    emitToggle() {
-      EventBus.$emit('toggle')
-    }
+    emitToggle: () => EventBus.$emit('toggle')
   }
 })
 </script>

@@ -6,7 +6,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
   layout: 'empty',
@@ -16,22 +16,24 @@ export default Vue.extend({
       default: null
     }
   },
-  data() {
-    return {
-      notFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
-  },
+  data: () => ({
+    notFound: '404 Not Found',
+    otherError: 'An error occurred'
+  }),
   head() {
     return {
-      title: this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+      title:
+        this.error.statusCode === 404
+          ? this.$data.notFound
+          : this.$data.otherError
     }
   }
 })
 </script>
 
 <style scoped>
-h1 {
-  font-size: 20px;
+a {
+  color: blue;
+  text-decoration: underline;
 }
 </style>

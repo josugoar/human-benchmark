@@ -1,4 +1,5 @@
 import Vue from 'vue'
-import VueKinesis from 'vue-kinesis'
+import { KinesisContainer, KinesisElement } from 'vue-kinesis'
 
-Vue.use(VueKinesis)
+Vue.component('kinesis-container', KinesisContainer)
+Vue.component('kinesis-element', KinesisElement)

@@ -29,26 +29,24 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  data() {
-    return {
-      references: [
-        {
-          icon: 'nuxt.png',
-          name: 'Nuxt.js',
-          url: 'https://www.nuxtjs.org/'
-        },
-        {
-          icon: 'django.png',
-          name: 'Django',
-          url: 'https://www.djangoproject.com/'
-        },
-        {
-          icon: 'tensorflow.png',
-          name: 'TensorFlow',
-          url: 'https://www.tensorflow.org/'
-        }
-      ]
-    }
-  }
+  data: () => ({
+    references: [
+      {
+        icon: 'nuxt.png',
+        name: 'Nuxt.js',
+        url: 'https://www.nuxtjs.org/'
+      },
+      {
+        icon: 'django.png',
+        name: 'Django',
+        url: 'https://www.djangoproject.com/'
+      },
+      {
+        icon: 'tensorflow.png',
+        name: 'TensorFlow',
+        url: 'https://www.tensorflow.org/'
+      }
+    ]
+  })
 })
 </script>

@@ -1,10 +1,12 @@
 <template>
-  <v-app>
-    <nuxt v-if="hydrated" />
+  <v-app :style="`background-color: ${$vuetify.theme.currentTheme.primary}`">
+    <template v-if="hydrated">
+      <nuxt />
+      <TheDrawer />
+      <TheHeader />
+      <TheFooter />
+    </template>
     <Loader v-else />
-    <TheDrawer />
-    <TheHeader />
-    <TheFooter />
   </v-app>
 </template>
 

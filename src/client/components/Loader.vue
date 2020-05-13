@@ -1,6 +1,6 @@
 <template>
-  <v-container style="height: 100vh;">
-    <v-row align="center" justify="center" style="height: 100%;">
+  <v-container fill-height>
+    <v-row align="center" justify="center">
       <v-progress-circular size="50" width="5" indeterminate />
     </v-row>
   </v-container>

@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="primary" app elevate-on-scroll>
+  <v-app-bar color="primary" scroll-threshold="1" app short elevate-on-scroll>
     <v-app-bar-nav-icon
       aria-label="Drawer"
       color="secondary"
@@ -28,10 +28,10 @@
       :slot="$vuetify.breakpoint.xs ? 'extension' : 'default'"
     >
       <v-tabs
+        :height="$vuetify.breakpoint.xs ? 48 : 56"
         background-color="transparent"
         class="d-flex justify-center"
         color="secondary"
-        height="100%"
         optional
       >
         <v-tab

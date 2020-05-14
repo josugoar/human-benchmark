@@ -1,6 +1,12 @@
 <template>
   <v-content>
-    <v-container class="background" fluid>
+    <v-container
+      class="background"
+      :style="{
+        'background-size': $vuetify.breakpoint.lgAndUp ? 'contain' : 'cover'
+      }"
+      fluid
+    >
       <v-row align="center">
         <v-col
           :class="[
@@ -79,15 +85,22 @@
                       v-text="window.name"
                     />
                     <v-card-actions class="font-weight-bold justify-center">
-                      <v-btn
-                        v-for="n in 3"
-                        :key="n"
-                        aria-label="Mode"
-                        color="secondary"
-                        icon
-                      >
-                        <v-icon>mdi-record</v-icon>
-                      </v-btn>
+                      <v-chip-group color="primary">
+                        <v-chip
+                          v-for="n in 3"
+                          :key="n"
+                          :to="`#${n}`"
+                          class="ma-2"
+                          exact
+                          nuxt
+                          pill
+                        >
+                          <v-avatar left>
+                            <v-icon>mdi-record</v-icon>
+                          </v-avatar>
+                          Lorem
+                        </v-chip>
+                      </v-chip-group>
                     </v-card-actions>
                   </v-card>
                 </v-row>
@@ -97,7 +110,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-sheet color="accent" height="1000" />
+    <v-sheet color="accent" height="1000" style="min-height: 100%;" />
     <v-fab-transition>
       <v-btn
         aria-label="Top"
@@ -168,6 +181,5 @@ button {
 }
 .background {
   background: url('/images/chess-background.svg') center;
-  background-size: cover;
 }
 </style>

@@ -12,7 +12,7 @@
    height="300"
    viewBox="0, 0, 400,300"
    version="1.1"
-   sodipodi:docname="chess-background-2.svg"
+   sodipodi:docname="chess-background.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata
      id="metadata26">
@@ -41,9 +41,9 @@
      inkscape:window-height="705"
      id="namedview22"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="232.80614"
-     inkscape:cy="-53.49168"
+     inkscape:zoom="2"
+     inkscape:cx="217.48067"
+     inkscape:cy="80.516982"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -65,5 +65,5 @@
      height="80"
      x="0"
      y="220.75"
-     style="stroke-width:0.75973713;fill:#9e9e9f;fill-opacity:1" />
+     style="fill:#9e9e9f;fill-opacity:1;stroke-width:0.75973743" />
 </svg>

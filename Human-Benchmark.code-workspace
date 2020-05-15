@@ -68,7 +68,7 @@
   "settings": {
     "editor.formatOnSave": true,
     "eslint.workingDirectories": ["./src/client", "./src/server"],
-    "python.pythonPath": "${workspaceFolder}/src/server/.venv/Scripts/python.exe",
+    "python.pythonPath": "src\\server\\.venv\\Scripts\\python.exe",
     "vetur.format.enable": false
   }
 }

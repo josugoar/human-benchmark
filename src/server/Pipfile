@@ -5,11 +5,11 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+jupyter = "*"
 autopep8 = "*"
 
 [packages]
 django = "*"
-tensorflow = "*"
 
 [requires]
 python_version = "3.7"

@@ -5,7 +5,9 @@
         class="display-1 font-weight-black d-flex justify-center"
         style="word-break: inherit;"
       >
-        Welcome
+        <span style="border-bottom: 5px solid;">
+          FAQ
+        </span>
       </v-card-title>
       <v-card-actions>
         <v-expansion-panels inset focusable multiple>

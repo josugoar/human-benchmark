@@ -1,5 +1,6 @@
 .
 ├── client
+│   ├── TODO: Save theme cache
 │   ├── TODO: Remove unused CSS (custom-properties)
 │   ├── TODO: Add parallax effect (v-parallax)
 │   ├── TODO: Add axios GraphQL endpoint

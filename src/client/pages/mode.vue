@@ -89,7 +89,7 @@
                         <v-chip
                           v-for="n in 3"
                           :key="n"
-                          :to="`#${n}`"
+                          :to="`#Mode-${n}`"
                           class="ma-2"
                           exact
                           nuxt

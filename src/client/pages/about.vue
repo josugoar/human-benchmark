@@ -1,8 +1,11 @@
 <template>
   <v-content>
     <v-card class="ma-10" color="transparent" elevation="0">
-      <v-card-title class="display-2" style="word-break: inherit;">
-        Frecuently Asked Questions
+      <v-card-title
+        class="display-1 font-weight-black d-flex justify-center"
+        style="word-break: inherit;"
+      >
+        Welcome
       </v-card-title>
       <v-card-actions>
         <v-expansion-panels inset focusable multiple>

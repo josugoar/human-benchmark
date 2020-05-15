@@ -1,8 +1,20 @@
 <template>
-  <v-system-bar app></v-system-bar>
+  <v-system-bar class="ma-1" color="primary">
+    <v-spacer />
+    <v-btn
+      v-for="button in buttons"
+      :key="button.text"
+      class="ma-1"
+      text
+      x-small
+      v-text="button.text"
+    />
+  </v-system-bar>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({})
+export default Vue.extend({
+  data: () => ({ buttons: [{ text: 'Log In' }, { text: 'Log Out' }] })
+})
 </script>

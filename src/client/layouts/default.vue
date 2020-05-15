@@ -1,12 +1,12 @@
 <template>
   <v-app :style="`background-color: ${$vuetify.theme.currentTheme.primary}`">
+    <Loader :loading="!hydrated" />
     <template v-if="hydrated">
       <nuxt />
       <TheDrawer />
       <TheHeader />
       <TheFooter />
     </template>
-    <Loader v-else />
   </v-app>
 </template>
 
@@ -18,17 +18,12 @@ import TheDrawer from '@/components/app/TheDrawer.vue'
 import TheHeader from '@/components/app/TheHeader.vue'
 import TheFooter from '@/components/app/TheFooter.vue'
 export default Vue.extend({
-  components: {
-    Loader,
-    TheDrawer,
-    TheHeader,
-    TheFooter
-  },
-  computed: {
-    ...mapState(['hydrated'])
-  },
+  components: { Loader, TheDrawer, TheHeader, TheFooter },
+  computed: { ...mapState(['hydrated']) },
   mounted() {
-    this.$store.commit('hydrate')
+    setTimeout(() => {
+      this.$store.commit('hydrate')
+    }, 100)
   }
 })
 </script>

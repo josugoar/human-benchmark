@@ -53,14 +53,9 @@ import { EventBus } from '@/components/utils/EventBus'
 export default Vue.extend({
   data: () => ({
     tabs: [
-      {
-        name: 'Home',
-        url: '/'
-      },
-      {
-        name: 'About',
-        url: '/about'
-      }
+      { name: 'Home', url: '/' },
+      { name: 'Ranking', url: '/ranking' },
+      { name: 'About', url: '/about' }
     ]
   }),
   computed: {

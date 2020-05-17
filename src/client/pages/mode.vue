@@ -1,8 +1,8 @@
 <template>
   <v-content>
     <v-container
-      class="background"
       :style="{
+        background: 'url(images/chess-background.svg) center',
         'background-size': $vuetify.breakpoint.lgAndUp ? 'contain' : 'cover'
       }"
       fluid
@@ -10,7 +10,7 @@
       <v-row align="center">
         <v-col
           :class="[
-            'd-flex font-weight-black justify-center text-resize text-uppercase',
+            'd-flex font-weight-black justify-center text-uppercase',
             $vuetify.breakpoint.mdAndUp ? 'display-3' : 'display-2',
             { 'text-center': $vuetify.breakpoint.xs }
           ]"
@@ -22,21 +22,21 @@
         />
         <v-col>
           <v-item-group
-            v-model="count"
+            v-model="window"
             class="d-flex justify-space-around"
             mandatory
           >
             <v-item
               v-for="window in windows"
               #default="{ active, toggle }"
-              :key="window.icon"
+              :key="window.title"
             >
               <v-tooltip top>
-                {{ window.name }}
+                {{ window.title }}
                 <template #activator="{ on }">
                   <v-btn
                     :active-class="$vuetify.theme.dark ? 'dark' : 'light'"
-                    :aria-label="window.name"
+                    :aria-label="window.title"
                     :input-value="active"
                     color="accent"
                     icon
@@ -53,76 +53,45 @@
       </v-row>
       <v-row>
         <v-col>
-          <v-window v-model="count" continuous show-arrows show-arrows-on-hover>
-            <v-window-item v-for="window in windows" :key="window.icon">
-              <v-container>
-                <v-row justify="center">
-                  <client-only>
-                    <kinesis-container>
-                      <kinesis-element :style="resetTransform">
-                        <kinesis-element
-                          :strength="2.5"
-                          :style="resetTransform"
-                          type="rotate"
-                        >
-                          <v-icon
-                            color="secondary"
-                            size="250"
-                            @mouseenter.stop="hover = true"
-                            @mouseleave.stop="hover = false"
-                            v-text="window.icon"
-                          />
-                        </kinesis-element>
-                      </kinesis-element>
-                    </kinesis-container>
-                  </client-only>
-                </v-row>
-                <v-row justify="center">
-                  <v-card color="transparent" elevation="0">
+          <v-window
+            v-model="window"
+            continuous
+            show-arrows
+            show-arrows-on-hover
+          >
+            <v-window-item v-for="window in windows" :key="window.title">
+              <v-row justify="center">
+                <v-card
+                  :elevation="isHovering ? 4 : 0"
+                  class="ma-1 mb-4 text-center"
+                  color="transparent"
+                  to="#"
+                  width="300"
+                  @mouseenter.stop="isHovering = true"
+                  @mouseleave.stop="isHovering = false"
+                >
+                  <kinesis-container>
+                    <kinesis-element :style="resetTransform" type="depth">
+                      <v-icon
+                        color="secondary"
+                        size="250"
+                        v-text="window.icon"
+                      />
+                    </kinesis-element>
                     <v-card-title
-                      class="font-weight-bold justify-center pa-0"
-                      style="font-size: 2.25rem;"
-                      v-text="window.name"
+                      class="display-1 font-weight-black justify-center pa-0"
+                      v-text="window.title"
                     />
-                    <v-card-actions class="font-weight-bold justify-center">
-                      <v-chip-group color="primary">
-                        <v-chip
-                          v-for="n in 3"
-                          :key="n"
-                          :to="`#Mode-${n}`"
-                          class="ma-2"
-                          exact
-                          nuxt
-                          pill
-                        >
-                          <v-avatar left>
-                            <v-icon>mdi-record</v-icon>
-                          </v-avatar>
-                          Lorem
-                        </v-chip>
-                      </v-chip-group>
-                    </v-card-actions>
-                  </v-card>
-                </v-row>
-              </v-container>
+                    <v-card-subtitle class="my-1" v-text="window.subtitle" />
+                  </kinesis-container>
+                </v-card>
+              </v-row>
             </v-window-item>
           </v-window>
         </v-col>
       </v-row>
     </v-container>
     <v-sheet color="accent" height="1000" style="min-height: 100%;" />
-    <v-fab-transition>
-      <v-btn
-        aria-label="Top"
-        absolute
-        fab
-        bottom
-        right
-        @click.stop="$vuetify.goTo(0)"
-      >
-        <v-icon>mdi-arrow-up-thick</v-icon>
-      </v-btn>
-    </v-fab-transition>
   </v-content>
 </template>
 
@@ -131,35 +100,35 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 export default Vue.extend({
   data: () => ({
-    count: 0,
-    hover: false,
+    isHovering: false,
+    window: 0,
     windows: [
       {
         icon: 'mdi-chess-king',
-        name: 'Classic',
-        text: 'Lorem Ipsum Dolor Sit Amet'
+        title: 'Classic',
+        subtitle: 'Good old fashioned chess'
       },
       {
         icon: 'mdi-chess-queen',
         name: 'Blitz',
-        text: 'Lorem Ipsum Dolor Sit Amet'
+        text: 'Hectic fast paced encounters'
       },
       {
         icon: 'mdi-chess-bishop',
-        name: 'Lorem',
-        text: 'Lorem Ipsum Dolor Sit Amet'
+        name: 'Custom',
+        text: 'Fully personalizable matches'
       },
       {
         icon: 'mdi-chess-knight',
-        name: 'Lorem',
-        text: 'Lorem Ipsum Dolor Sit Amet'
+        name: 'Puzzle',
+        text: 'Engaging bite sized challenges'
       }
     ]
   }),
   computed: {
     ...mapState(['env', 'hydrated']),
     resetTransform() {
-      return this.hover ? '' : 'transform: none;'
+      return this.isHovering ? '' : 'transform: none;'
     }
   }
 })
@@ -167,7 +136,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @media (max-width: 400px) {
-  .text-resize {
+  .text-xxs {
     font-size: 2.25rem !important;
   }
 }
@@ -178,8 +147,5 @@ button {
   &.dark {
     color: white !important;
   }
-}
-.background {
-  background: url('/images/chess-background.svg') center;
 }
 </style>

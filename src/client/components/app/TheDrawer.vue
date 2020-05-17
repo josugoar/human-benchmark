@@ -1,4 +1,6 @@
 <template>
+  <!-- ADD CROSS BUTTON -->
+  <!-- ADD ELO AND MOVE SETTING -->
   <v-navigation-drawer v-model="drawer" color="primary" app temporary>
     <TheSystemBar />
     <v-list nav>
@@ -16,6 +18,8 @@
           </v-btn>
         </v-list-item-action>
       </v-list-item>
+      <v-divider inset />
+      <v-subheader>Lorem ipsum</v-subheader>
       <v-list-item-group>
         <v-list-item
           v-for="item in items"
@@ -28,7 +32,7 @@
             <v-icon v-text="item.icon" />
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title class="font-weight-bold" v-text="item.name" />
+            <v-list-item-title v-text="item.name" />
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>

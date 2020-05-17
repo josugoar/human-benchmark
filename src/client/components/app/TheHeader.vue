@@ -58,11 +58,7 @@ export default Vue.extend({
       { name: 'About', url: '/about' }
     ]
   }),
-  computed: {
-    ...mapState(['env', 'hydrated'])
-  },
-  methods: {
-    emitToggle: () => EventBus.$emit('toggle')
-  }
+  computed: { ...mapState(['env', 'hydrated']) },
+  methods: { emitToggle: () => EventBus.$emit('toggle') }
 })
 </script>

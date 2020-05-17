@@ -4,7 +4,7 @@
     <v-btn
       v-for="button in buttons"
       :key="button.text"
-      class="ma-1"
+      class="mx-1"
       text
       x-small
       v-text="button.text"

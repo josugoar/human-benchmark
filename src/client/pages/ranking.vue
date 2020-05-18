@@ -32,6 +32,7 @@
 import Vue from 'vue'
 export default Vue.extend({
   data: () => ({
+    // TODO: Fix
     page: 1,
     pageCount: 50,
     search: '',
@@ -39,7 +40,6 @@ export default Vue.extend({
       {
         value: 'user',
         text: 'User',
-
         sortable: false
       },
       {
@@ -60,41 +60,6 @@ export default Vue.extend({
       }
     ],
     values: [
-      {
-        user: 'JoshGA',
-        elo: 118,
-        wins: 21,
-        loses: 16,
-        ratio: 21 / 16
-      },
-      {
-        user: 'JoshGA',
-        elo: 118,
-        wins: 21,
-        loses: 16,
-        ratio: 21 / 16
-      },
-      {
-        user: 'JoshGA',
-        elo: 118,
-        wins: 21,
-        loses: 16,
-        ratio: 21 / 16
-      },
-      {
-        user: 'JoshGA',
-        elo: 118,
-        wins: 21,
-        loses: 16,
-        ratio: 21 / 16
-      },
-      {
-        user: 'JoshGA',
-        elo: 118,
-        wins: 21,
-        loses: 16,
-        ratio: 21 / 16
-      },
       {
         user: 'JoshGA',
         elo: 118,

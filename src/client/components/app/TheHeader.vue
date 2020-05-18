@@ -38,10 +38,10 @@
       >
         <v-tab
           v-for="tab in tabs"
-          :key="tab.name"
+          :key="tab.label"
           :to="tab.url"
           nuxt
-          v-text="tab.name"
+          v-text="tab.label"
         />
       </v-tabs>
     </component>
@@ -58,11 +58,11 @@ export default Vue.extend({
   data: () => ({
     tabs: [
       {
-        name: 'Ranking',
+        label: 'Ranking',
         url: '/ranking'
       },
       {
-        name: 'About',
+        label: 'About',
         url: '/about'
       }
     ]

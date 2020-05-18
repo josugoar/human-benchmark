@@ -3,11 +3,11 @@
     <v-spacer />
     <v-btn
       v-for="button in buttons"
-      :key="button.text"
+      :key="button.label"
       class="mx-1"
       text
       x-small
-      v-text="button.text"
+      v-text="button.label"
     />
   </v-system-bar>
 </template>
@@ -18,10 +18,10 @@ export default Vue.extend({
   data: () => ({
     buttons: [
       {
-        text: 'Log In'
+        label: 'Log In'
       },
       {
-        text: 'Log Out'
+        label: 'Log Out'
       }
     ]
   })

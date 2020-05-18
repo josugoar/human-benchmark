@@ -32,18 +32,18 @@ export default Vue.extend({
   data: () => ({
     references: [
       {
-        icon: 'nuxt.png',
         name: 'Nuxt.js',
+        icon: 'nuxt.png',
         url: 'https://www.nuxtjs.org/'
       },
       {
-        icon: 'django.png',
         name: 'Django',
+        icon: 'django.png',
         url: 'https://www.djangoproject.com/'
       },
       {
-        icon: 'tensorflow.png',
         name: 'TensorFlow',
+        icon: 'tensorflow.png',
         url: 'https://www.tensorflow.org/'
       }
     ]

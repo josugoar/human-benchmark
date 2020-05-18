@@ -57,11 +57,21 @@ export default Vue.extend({
   mixins: [OffsetThreshold],
   data: () => ({
     tabs: [
-      { name: 'Ranking', url: '/ranking' },
-      { name: 'About', url: '/about' }
+      {
+        name: 'Ranking',
+        url: '/ranking'
+      },
+      {
+        name: 'About',
+        url: '/about'
+      }
     ]
   }),
-  computed: { ...mapState(['hydrated']) },
-  methods: { emitToggle: () => EventBus.$emit('toggle') }
+  computed: {
+    ...mapState(['hydrated'])
+  },
+  methods: {
+    emitToggle: () => EventBus.$emit('toggle')
+  }
 })
 </script>

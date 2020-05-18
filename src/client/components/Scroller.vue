@@ -8,7 +8,7 @@
       fab
       fixed
       right
-      @click.stop="$vuetify.goTo(goTo)"
+      @click.stop="$vuetify.goTo(target)"
     >
       <v-icon>mdi-arrow-up-thick</v-icon>
     </v-btn>
@@ -21,8 +21,14 @@ import OffsetThreshold from '@/components/utils/OffsetThreshold'
 export default Vue.extend({
   mixins: [OffsetThreshold],
   props: {
-    goTo: { type: Number, default: 0 },
-    threshold: { type: Number, default: 100 }
+    target: {
+      type: Number,
+      default: 0
+    },
+    threshold: {
+      type: Number,
+      default: 100
+    }
   }
 })
 </script>

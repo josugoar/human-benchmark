@@ -41,7 +41,6 @@
       <v-row justify="center">
         <v-switch
           v-model="$vuetify.theme.dark"
-          color="secondary"
           prepend-icon="mdi-theme-light-dark"
         />
       </v-row>
@@ -51,14 +50,21 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { EventBus } from '@/components/utils/EventBus'
 import TheSystemBar from '@/components/app/TheSystemBar.vue'
+import { EventBus } from '@/components/utils/EventBus'
 export default Vue.extend({
-  components: { TheSystemBar },
-  asyncData: () => ({}),
+  components: {
+    TheSystemBar
+  },
   data: () => ({
-    items: [{ icon: 'mdi-view-dashboard', name: 'Dashboard', url: '#' }],
-    drawer: false
+    drawer: false,
+    items: [
+      {
+        name: 'Dashboard',
+        icon: 'mdi-view-dashboard',
+        url: '#'
+      }
+    ]
   }),
   mounted() {
     EventBus.$on('toggle', () => {

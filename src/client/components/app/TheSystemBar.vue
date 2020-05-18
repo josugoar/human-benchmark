@@ -15,6 +15,15 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  data: () => ({ buttons: [{ text: 'Log In' }, { text: 'Log Out' }] })
+  data: () => ({
+    buttons: [
+      {
+        text: 'Log In'
+      },
+      {
+        text: 'Log Out'
+      }
+    ]
+  })
 })
 </script>

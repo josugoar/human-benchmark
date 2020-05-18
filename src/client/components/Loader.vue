@@ -18,8 +18,14 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    loading: { type: Boolean, default: false },
-    message: { type: String, default: '' }
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    message: {
+      type: String,
+      default: ''
+    }
   }
 })
 </script>

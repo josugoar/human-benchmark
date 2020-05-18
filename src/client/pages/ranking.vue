@@ -36,11 +36,28 @@ export default Vue.extend({
     pageCount: 50,
     search: '',
     headers: [
-      { text: 'User', sortable: false, value: 'user' },
-      { text: 'ELO', value: 'elo' },
-      { text: 'Wins', value: 'wins' },
-      { text: 'Loses', value: 'loses' },
-      { text: 'Ratio', value: 'ratio' }
+      {
+        value: 'user',
+        text: 'User',
+
+        sortable: false
+      },
+      {
+        value: 'elo',
+        text: 'ELO'
+      },
+      {
+        value: 'wins',
+        text: 'Wins'
+      },
+      {
+        value: 'loses',
+        text: 'Loses'
+      },
+      {
+        value: 'ratio',
+        text: 'Ratio'
+      }
     ],
     values: [
       {

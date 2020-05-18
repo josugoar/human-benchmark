@@ -10,8 +10,16 @@
 import Vue from 'vue'
 export default Vue.extend({
   layout: 'empty',
-  props: { error: { type: Object, default: null } },
-  data: () => ({ notFound: '404 Not Found', otherError: 'An error occurred' }),
+  props: {
+    error: {
+      type: Object,
+      default: null
+    }
+  },
+  data: () => ({
+    notFound: '404 Not Found',
+    otherError: 'An error occurred'
+  }),
   head() {
     return {
       title: this.error.statusCode === 404 ? this.notFound : this.otherError

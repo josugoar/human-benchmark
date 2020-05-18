@@ -20,8 +20,16 @@ import TheDrawer from '@/components/app/TheDrawer.vue'
 import TheHeader from '@/components/app/TheHeader.vue'
 import TheFooter from '@/components/app/TheFooter.vue'
 export default Vue.extend({
-  components: { Loader, Scroller, TheDrawer, TheHeader, TheFooter },
-  computed: { ...mapState(['hydrated']) },
+  components: {
+    Loader,
+    Scroller,
+    TheDrawer,
+    TheHeader,
+    TheFooter
+  },
+  computed: {
+    ...mapState(['hydrated'])
+  },
   mounted() {
     setTimeout(() => this.$store.commit('hydrate'), 100)
   }

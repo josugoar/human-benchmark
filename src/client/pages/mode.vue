@@ -63,11 +63,11 @@
             <v-window-item v-for="window in windows" :key="window.title">
               <v-row justify="center">
                 <v-card
-                  :elevation="isHovering ? 4 : 0"
                   class="ma-1 mb-4 text-center"
                   color="transparent"
                   to="#"
                   width="300"
+                  hover
                   @mouseenter.stop="isHovering = true"
                   @mouseleave.stop="isHovering = false"
                 >
@@ -104,24 +104,24 @@ export default Vue.extend({
     window: 0,
     windows: [
       {
-        icon: 'mdi-chess-king',
         title: 'Classic',
-        subtitle: 'Good old fashioned chess'
+        subtitle: 'Good old fashioned chess',
+        icon: 'mdi-chess-king'
       },
       {
-        icon: 'mdi-chess-queen',
         title: 'Blitz',
-        subtitle: 'Hectic fast paced encounters'
+        subtitle: 'Hectic fast paced encounters',
+        icon: 'mdi-chess-queen'
       },
       {
-        icon: 'mdi-chess-bishop',
         title: 'Custom',
-        subtitle: 'Fully personalizable matches'
+        subtitle: 'Fully personalizable matches',
+        icon: 'mdi-chess-bishop'
       },
       {
-        icon: 'mdi-chess-knight',
         title: 'Puzzle',
-        subtitle: 'Engaging bite sized challenges'
+        subtitle: 'Engaging bite sized challenges',
+        icon: 'mdi-chess-knight'
       }
     ]
   }),

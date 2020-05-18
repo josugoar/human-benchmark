@@ -19,10 +19,21 @@ export default {
   },
   css: ['@/assets/scss/main.scss'],
   head: {
-    link: [{ href: 'favicon/favicon.ico', rel: 'icon', type: 'image/x-icon' }],
+    link: [
+      {
+        href: 'favicon/favicon.ico',
+        rel: 'icon',
+        type: 'image/x-icon'
+      }
+    ],
     meta: [
-      { charset: 'utf-8' },
-      { content: 'width=device-width, initial-scale=1', name: 'viewport' },
+      {
+        charset: 'utf-8'
+      },
+      {
+        content: 'width=device-width, initial-scale=1',
+        name: 'viewport'
+      },
       {
         content: process.env.npm_package_description || '',
         hid: 'description',
@@ -32,11 +43,18 @@ export default {
     title: 'Human Benchmark',
     titleTemplate: process.env.title
   },
-  loading: { color: colors.shades.black },
+  loading: {
+    color: colors.shades.black
+  },
   plugins: ['@/plugins/vue-kinesis.client.ts'],
   modules: [
     '@nuxtjs/pwa',
-    ['@nuxtjs/axios', { baseURL: process.env.BASE_URL }]
+    [
+      '@nuxtjs/axios',
+      {
+        baseURL: process.env.BASE_URL
+      }
+    ]
   ],
   buildModules: [
     '@nuxt/typescript-build',

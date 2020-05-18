@@ -1,5 +1,5 @@
 <template>
-  <v-system-bar class="ma-1" color="primary">
+  <v-system-bar class="ma-1" color="transparent">
     <v-spacer />
     <v-btn
       v-for="button in buttons"

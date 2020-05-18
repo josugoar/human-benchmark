@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="primary" absolute app>
+  <v-footer absolute app>
     <v-container>
       <v-row align="center" justify="center">
         Powered by
@@ -8,7 +8,7 @@
           :key="reference.name"
           :aria-label="reference.name"
           :href="reference.url"
-          class="ml-1"
+          class="mx-1"
           rel="noopener"
           target="_blank"
           icon

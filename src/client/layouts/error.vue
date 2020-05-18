@@ -14,10 +14,7 @@ export default Vue.extend({
   data: () => ({ notFound: '404 Not Found', otherError: 'An error occurred' }),
   head() {
     return {
-      title:
-        this.error.statusCode === 404
-          ? this.$data.notFound
-          : this.$data.otherError
+      title: this.error.statusCode === 404 ? this.notFound : this.otherError
     }
   }
 })

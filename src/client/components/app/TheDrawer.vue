@@ -1,7 +1,7 @@
 <template>
   <!-- ADD CROSS BUTTON -->
   <!-- ADD ELO AND MOVE SETTING -->
-  <v-navigation-drawer v-model="drawer" color="primary" app temporary>
+  <v-navigation-drawer v-model="drawer" app temporary>
     <TheSystemBar />
     <v-list nav>
       <v-list-item>
@@ -57,11 +57,7 @@ export default Vue.extend({
   components: { TheSystemBar },
   asyncData: () => ({}),
   data: () => ({
-    items: [
-      { icon: 'mdi-view-dashboard', name: 'Dashboard', url: '#Drawer-1' },
-      { icon: 'mdi-record', name: 'Lorem ipsum', url: '#Drawer-2' },
-      { icon: 'mdi-record', name: 'Lorem ipsum', url: '#Drawer-3' }
-    ],
+    items: [{ icon: 'mdi-view-dashboard', name: 'Dashboard', url: '#' }],
     drawer: false
   }),
   mounted() {

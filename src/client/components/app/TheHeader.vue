@@ -1,13 +1,16 @@
 <template>
-  <v-app-bar color="primary" scroll-threshold="1" app short elevate-on-scroll>
-    <v-app-bar-nav-icon
-      aria-label="Drawer"
-      color="secondary"
-      @click.stop="emitToggle"
-    />
+  <v-app-bar
+    v-scroll="onScroll"
+    :color="offsetTop === 0 ? 'transparent' : ''"
+    scroll-threshold="1"
+    app
+    short
+    elevate-on-scroll
+  >
+    <v-app-bar-nav-icon aria-label="Drawer" @click.stop="emitToggle" />
     <v-toolbar-title class="font-weight-black">
       <nuxt-link to="/" exact>
-        <v-avatar size="30" style="vertical-align: bottom;" tile>
+        <v-avatar size="30" style="vertical-align: bottom;">
           <v-img
             :src="
               require(`@/assets/icons/main/${
@@ -15,10 +18,9 @@
               }`)
             "
             alt="Icon"
-            contain
           />
         </v-avatar>
-        {{ env.title }}
+        Human Benchmark
       </nuxt-link>
     </v-toolbar-title>
     <v-spacer />
@@ -31,7 +33,7 @@
         :height="$vuetify.breakpoint.xs ? 48 : 56"
         background-color="transparent"
         class="d-flex justify-center"
-        color="secondary"
+        color="accent"
         optional
       >
         <v-tab
@@ -49,16 +51,17 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import OffsetThreshold from '@/components/utils/OffsetThreshold'
 import { EventBus } from '@/components/utils/EventBus'
 export default Vue.extend({
+  mixins: [OffsetThreshold],
   data: () => ({
     tabs: [
-      { name: 'Home', url: '/' },
       { name: 'Ranking', url: '/ranking' },
       { name: 'About', url: '/about' }
     ]
   }),
-  computed: { ...mapState(['env', 'hydrated']) },
+  computed: { ...mapState(['hydrated']) },
   methods: { emitToggle: () => EventBus.$emit('toggle') }
 })
 </script>

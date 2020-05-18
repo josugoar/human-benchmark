@@ -1,12 +1,12 @@
 <template>
   <v-fab-transition>
     <v-btn
-      v-show="offsetTop > 10"
+      v-show="offsetTop > threshold"
       v-scroll="onScroll"
       aria-label="Top"
+      bottom
       fab
       fixed
-      bottom
       right
       @click.stop="$vuetify.goTo(goTo)"
     >
@@ -17,13 +17,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import OffsetThreshold from '@/components/utils/OffsetThreshold'
 export default Vue.extend({
-  props: { goTo: { type: Number, default: 0 } },
-  data: () => ({ offsetTop: 0 }),
-  methods: {
-    onScroll() {
-      this.offsetTop = window.scrollY
-    }
+  mixins: [OffsetThreshold],
+  props: {
+    goTo: { type: Number, default: 0 },
+    threshold: { type: Number, default: 100 }
   }
 })
 </script>

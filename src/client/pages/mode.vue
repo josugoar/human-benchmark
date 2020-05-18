@@ -18,8 +18,9 @@
           order-sm="2"
           sm="6"
           style="max-width: 100%; word-spacing: 100vw;"
-          v-text="env.title"
-        />
+        >
+          Human Benchmark
+        </v-col>
         <v-col>
           <v-item-group
             v-model="window"
@@ -38,7 +39,7 @@
                     :active-class="$vuetify.theme.dark ? 'dark' : 'light'"
                     :aria-label="window.title"
                     :input-value="active"
-                    color="accent"
+                    color="primary"
                     icon
                     v-on="on"
                     @click.stop="toggle"
@@ -71,12 +72,11 @@
                   @mouseleave.stop="isHovering = false"
                 >
                   <kinesis-container>
-                    <kinesis-element :style="resetTransform" type="depth">
-                      <v-icon
-                        color="secondary"
-                        size="250"
-                        v-text="window.icon"
-                      />
+                    <kinesis-element
+                      :style="!isHovering ? 'transform: none;' : ''"
+                      type="depth"
+                    >
+                      <v-icon color="accent" size="250" v-text="window.icon" />
                     </kinesis-element>
                     <v-card-title
                       class="display-1 font-weight-black justify-center pa-0"
@@ -91,7 +91,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-sheet color="accent" height="1000" style="min-height: 100%;" />
+    <v-sheet color="primary" height="1000" style="min-height: 100%;" />
   </v-content>
 </template>
 
@@ -110,36 +110,28 @@ export default Vue.extend({
       },
       {
         icon: 'mdi-chess-queen',
-        name: 'Blitz',
-        text: 'Hectic fast paced encounters'
+        title: 'Blitz',
+        subtitle: 'Hectic fast paced encounters'
       },
       {
         icon: 'mdi-chess-bishop',
-        name: 'Custom',
-        text: 'Fully personalizable matches'
+        title: 'Custom',
+        subtitle: 'Fully personalizable matches'
       },
       {
         icon: 'mdi-chess-knight',
-        name: 'Puzzle',
-        text: 'Engaging bite sized challenges'
+        title: 'Puzzle',
+        subtitle: 'Engaging bite sized challenges'
       }
     ]
   }),
   computed: {
-    ...mapState(['env', 'hydrated']),
-    resetTransform() {
-      return this.isHovering ? '' : 'transform: none;'
-    }
+    ...mapState(['hydrated'])
   }
 })
 </script>
 
 <style lang="scss" scoped>
-@media (max-width: 400px) {
-  .text-xxs {
-    font-size: 2.25rem !important;
-  }
-}
 button {
   &.light {
     color: black !important;

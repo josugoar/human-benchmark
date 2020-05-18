@@ -1,11 +1,13 @@
 <template>
   <v-content>
-    <v-expansion-panels class="ma-10" inset focusable multiple>
-      <v-expansion-panel v-for="panel in panels" :key="panel.header">
-        <v-expansion-panel-header v-text="panel.header" />
-        <v-expansion-panel-content class="pa-5" v-text="panel.content" />
-      </v-expansion-panel>
-    </v-expansion-panels>
+    <v-card class="ma-5">
+      <v-expansion-panels class="pa-5" inset focusable multiple>
+        <v-expansion-panel v-for="panel in panels" :key="panel.header">
+          <v-expansion-panel-header v-text="panel.header" />
+          <v-expansion-panel-content class="pa-5" v-text="panel.content" />
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-card>
   </v-content>
 </template>
 

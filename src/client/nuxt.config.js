@@ -18,7 +18,6 @@ export default {
     optimizeCSS: true
   },
   css: ['@/assets/scss/main.scss'],
-  env: { title: 'Human Benchmark' },
   head: {
     link: [{ href: 'favicon/favicon.ico', rel: 'icon', type: 'image/x-icon' }],
     meta: [
@@ -49,15 +48,15 @@ export default {
         theme: {
           themes: {
             light: {
-              primary: colors.grey.lighten4,
-              secondary: colors.grey.darken4,
-              accent: colors.grey.base,
+              primary: colors.grey.base,
+              secondary: colors.grey.lighten4,
+              accent: colors.grey.darken4,
               anchor: 'inherit'
             },
             dark: {
-              primary: colors.grey.darken4,
-              secondary: colors.grey.lighten4,
-              accent: colors.grey.base,
+              primary: colors.grey.base,
+              secondary: colors.grey.darken4,
+              accent: colors.grey.lighten4,
               anchor: 'inherit'
             }
           }

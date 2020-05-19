@@ -3,19 +3,18 @@ require('dotenv').config()
 
 export default {
   build: {
+    optimizeCSS: true,
     extend(config, ctx) {
       if (ctx.isDev)
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
-      else {
+      else
         config.module.rules.push({
           enforce: 'pre',
           exclude: /(node_modules)/,
           loader: 'eslint-loader',
           test: /\.(js|ts|vue)$/
         })
-      }
-    },
-    optimizeCSS: true
+    }
   },
   css: ['@/assets/scss/main.scss'],
   head: {
@@ -67,13 +66,11 @@ export default {
           themes: {
             light: {
               primary: colors.grey.base,
-              // secondary: colors.grey.lighten4,
               accent: colors.grey.darken4,
               anchor: 'inherit'
             },
             dark: {
               primary: colors.grey.base,
-              // secondary: colors.grey.darken4,
               accent: colors.grey.lighten4,
               anchor: 'inherit'
             }

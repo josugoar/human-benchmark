@@ -33,7 +33,6 @@
         :height="$vuetify.breakpoint.xs ? 48 : 56"
         background-color="transparent"
         class="d-flex justify-center"
-        color="accent"
         optional
       >
         <v-tab

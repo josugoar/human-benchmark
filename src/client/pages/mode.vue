@@ -39,7 +39,7 @@
                     :active-class="$vuetify.theme.dark ? 'dark' : 'light'"
                     :aria-label="window.title"
                     :input-value="active"
-                    color="primary"
+                    color="accent"
                     icon
                     v-on="on"
                     @click.stop="toggle"
@@ -76,7 +76,7 @@
                       :style="!isHovering ? 'transform: none;' : ''"
                       type="depth"
                     >
-                      <v-icon color="accent" size="250" v-text="window.icon" />
+                      <v-icon color="primary" size="250" v-text="window.icon" />
                     </kinesis-element>
                     <v-card-title
                       class="display-1 font-weight-black justify-center pa-0"
@@ -91,7 +91,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-sheet color="primary" height="1000" style="min-height: 100%;" />
+    <v-sheet color="accent" height="1000" style="min-height: 100%;" />
   </v-content>
 </template>
 

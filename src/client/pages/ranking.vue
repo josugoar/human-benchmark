@@ -21,6 +21,7 @@
         v-model="page"
         :length="pageCount"
         class="my-1"
+        color="accent"
         total-visible="10"
         circle
       />

@@ -4,11 +4,11 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-tensorflow = "*"
 autopep8 = "*"
+matplotlib = "*"
 pylint = "*"
 rope = "*"
-matplotlib = "*"
+tensorflow = "*"
 
 [packages]
 django = "*"

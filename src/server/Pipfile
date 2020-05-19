@@ -4,13 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
-jupyter = "*"
+tensorflow = "*"
 autopep8 = "*"
+pylint = "*"
+rope = "*"
+matplotlib = "*"
 
 [packages]
 django = "*"
-tensorflow = "*"
 
 [requires]
 python_version = "3.7"

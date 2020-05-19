@@ -1,5 +1,5 @@
 <template>
-  <v-app :style="`background-color: ${$vuetify.theme.currentTheme.secondary}`">
+  <v-app>
     <Loader :loading="!hydrated" />
     <template v-if="hydrated">
       <nuxt />

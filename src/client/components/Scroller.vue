@@ -17,9 +17,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import OffsetThreshold from '@/components/utils/OffsetThreshold'
+import OffsetTop from '@/components/utils/OffsetTop'
 export default Vue.extend({
-  mixins: [OffsetThreshold],
+  mixins: [OffsetTop],
   props: {
     target: {
       type: Number,

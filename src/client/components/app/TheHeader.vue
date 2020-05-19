@@ -13,7 +13,7 @@
         <v-avatar size="30" style="vertical-align: bottom;">
           <v-img
             :src="
-              require(`@/assets/icons/main/${
+              require(`@/assets/icons/logo/${
                 $vuetify.theme.dark ? 'dark.png' : 'light.png'
               }`)
             "
@@ -51,10 +51,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import OffsetThreshold from '@/components/utils/OffsetThreshold'
+import OffsetTop from '@/components/utils/OffsetTop'
 import { EventBus } from '@/components/utils/EventBus'
 export default Vue.extend({
-  mixins: [OffsetThreshold],
+  mixins: [OffsetTop],
   data: () => ({
     tabs: [
       {

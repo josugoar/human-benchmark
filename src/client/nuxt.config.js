@@ -67,13 +67,13 @@ export default {
           themes: {
             light: {
               primary: colors.grey.base,
-              secondary: colors.grey.lighten4,
+              // secondary: colors.grey.lighten4,
               accent: colors.grey.darken4,
               anchor: 'inherit'
             },
             dark: {
               primary: colors.grey.base,
-              secondary: colors.grey.darken4,
+              // secondary: colors.grey.darken4,
               accent: colors.grey.lighten4,
               anchor: 'inherit'
             }

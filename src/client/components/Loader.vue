@@ -7,7 +7,7 @@
           <v-progress-circular size="50" width="5" indeterminate />
         </v-col>
         <v-col class="d-flex justify-center" cols="12">
-          <h2 v-text="msg" />
+          <h2 v-text="message" />
         </v-col>
       </v-row>
     </v-container>
@@ -22,7 +22,7 @@ export default Vue.extend({
       type: Boolean,
       default: false
     },
-    msg: {
+    message: {
       type: String,
       default: ''
     }

@@ -103,9 +103,7 @@ export default Vue.extend({
     } as User
   }),
   mounted() {
-    EventBus.$on('toggle', () => {
-      this.drawer = !this.drawer
-    })
+    EventBus.$on('toggle', () => (this.drawer = !this.drawer))
   }
 })
 </script>

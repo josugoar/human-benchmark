@@ -31,7 +31,7 @@ export default Vue.extend({
     ...mapState(['hydrated'])
   },
   mounted() {
-    setTimeout(() => this.$store.commit('hydrate'), 100)
+    this.$store.commit('hydrate')
   }
 })
 </script>

@@ -5,15 +5,16 @@ export default {
   build: {
     optimizeCSS: true,
     extend(config, ctx) {
-      if (ctx.isDev)
+      if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
-      else
+      } else {
         config.module.rules.push({
           enforce: 'pre',
           exclude: /(node_modules)/,
           loader: 'eslint-loader',
           test: /\.(js|ts|vue)$/
         })
+      }
     }
   },
   css: ['@/assets/scss/main.scss'],

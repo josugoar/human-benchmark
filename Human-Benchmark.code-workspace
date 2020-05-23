@@ -10,6 +10,7 @@
       "christian-kohler.path-intellisense",
       "esbenp.prettier-vscode",
       "ms-python.python",
+      "njpwerner.autodocstring",
       "humao.rest-client",
       "octref.vetur",
       "sdras.vue-vscode-snippets"
@@ -61,6 +62,13 @@
         "program": "${workspaceFolder}/src/server/manage.py",
         "args": ["runserver", "--noreload"],
         "django": true
+      },
+      {
+        "name": "Python: Current File",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal"
       }
     ],
     "version": "0.2.0"
@@ -69,6 +77,7 @@
     "editor.formatOnSave": true,
     "eslint.workingDirectories": ["./src/client", "./src/server"],
     "python.pythonPath": "src\\server\\.venv\\Scripts\\python.exe",
+    "python.formatting.autopep8Args": ["--max-line-length", "120"],
     "vetur.format.enable": false
   }
 }

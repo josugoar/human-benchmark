@@ -1,57 +1,157 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from tensorflow import keras
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.layers import (Conv2D, Dense, Dropout, Flatten,
-                                     MaxPooling2D)
-from tensorflow.keras.models import Sequential
+from collections import defaultdict
+from typing import Any, Dict, Iterable, Set, Tuple, Union
 
-batch_size = 128
-num_classes = 10
-epochs = 2
 
-# input image dimensions
-img_rows, img_cols = 28, 28
+class Graph:
+    """Mathematical representation of a network which describes the relationship between lines and points
+    """
 
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+    def __init__(self, **kwargs: Any):
+        """Create a new graph
 
-x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
-x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
-input_shape = (img_rows, img_cols, 1)
+        Keyword Arguments:
+            **kwargs {Any} -- Graph data to be assigned
+        """
+        self.graph = dict(kwargs)
+        self.__adj = defaultdict(dict)
+        self.__vertices = defaultdict(dict)
 
-# x_train = x_train.astype('float32')
-# x_test = x_test.astype('float32')
-x_train = x_train / 255
-x_test = x_test / 255
-print('x_train shape:', x_train.shape)
-print(x_train.shape[0], 'train samples')
-print(x_test.shape[0], 'test samples')
+    @property
+    def name(self) -> str:
+        """String identifier of graph
 
-# convert class vectors to binary class matrices
-y_train = keras.utils.to_categorical(y_train, num_classes)
-y_test = keras.utils.to_categorical(y_test, num_classes)
+        Returns:
+            str -- String identifier of graph, defaulted to an empty string
+        """
+        return self.graph.get("name", "")
 
-model = Sequential()
-model.add(Conv2D(32, kernel_size=(3, 3),
-                 activation='relu',
-                 input_shape=input_shape))
-model.add(Conv2D(64, (3, 3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
-model.add(Flatten())
-model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(num_classes, activation='softmax'))
+    @name.setter
+    def name(self, name: str):
+        """Set the string identifier of graph
 
-model.compile(loss=keras.losses.categorical_crossentropy,
-              optimizer=keras.optimizers.Adadelta(),
-              metrics=['accuracy'])
+        Arguments:
+            name {str} -- New string identifier of graph
+        """
+        self.graph["name"] = name
 
-model.fit(x_train, y_train,
-          batch_size=batch_size,
-          epochs=epochs,
-          verbose=1,
-          validation_data=(x_test, y_test))
-score = model.evaluate(x_test, y_test, verbose=0)
-print('Test loss:', score[0])
-print('Test accuracy:', score[1])
+    # TODO: Fix
+
+    @property
+    def directed(self) -> bool:
+        """Directed value of graph
+
+        Returns:
+            bool -- True if the directed value of graph is truthy, False otherwise
+        """
+        return bool(self.graph.get("directed", True))
+
+    @directed.setter
+    def directed(self, directed: bool) -> None:
+        """Set the directed value of graph
+
+        Arguments:
+            directed {bool} -- New directed value of graph
+        """
+        self.graph["directed"] = directed
+
+    def add_edge(self, u: Any, v: Any, **kwargs: Any) -> None:
+        """Add edge to graph
+
+        Arguments:
+            u, v {Any} -- Vertices to be connected by edge
+
+        Keyword Arguments:
+            **kwargs {Any} -- Edge data to be assigned
+        """
+        ...
+
+    def add_edges_from(self, iter: Iterable[Union[Tuple[Any, Any]], Tuple[Any, Any, Any]], **kwargs: Any):
+        """Add edges to graph
+
+        Arguments:
+            iter {Iterable[Union[Tuple[Any, Any]], Tuple[Any, Any, Any]]} -- Edges and edge data to be added
+
+        Keyword Arguments:
+            **kwargs {Any} -- Edge data to be assigned
+        """
+        ...
+
+    def add_vertex(self, v: Any, **kwargs: Any) -> None:
+        """Add vertex to graph
+
+        Arguments:
+            v {Any} -- Vertex to be added
+
+        Keyword Arguments:
+            **kwargs {Any} -- Edge data to be assigned
+        """
+        self.__adj[v]
+        self.__vertices[v].update(kwargs)
+
+    def add_vertices_from(self, iter: Iterable[Union[Any], Tuple[Any, Any]], **kwargs: Any):
+        """Add vertices to graph
+
+        Arguments:
+            iter {Iterable[Union[Any], Tuple[Any, Any]]} -- Vertices and vertex data to be added
+
+        Keyword Arguments:
+            **kwargs {Any} -- Vertex data to be assigned
+        """
+        ...
+
+    def degree_of(self, v: Any) -> int:
+        """Return the number of vertices connected from source vertex
+
+        Arguments:
+            vertex {Any} -- Source vertex to be evaluated
+
+        Returns:
+            int -- Degree of source vertex
+        """
+        ...
+
+    def edges_of(self, vertex: Any) -> Set[Any]:
+        ...
+
+    def get_all_edges(self, u: Any, v: Any) -> Set[Any]:
+        ...
+
+    def get_edges(self, u: Any, v: Any) -> Any:
+        ...
+
+    def is_adjacent(self, u: Any, v: Any) -> bool:
+        """Return if v is connected from u
+
+        Arguments:
+            u {Any} -- Source vertex to be evaluated
+            v {Any} -- Target vertex to be evaluated
+
+        Returns:
+            bool -- True if v is connected from u, False otherwise
+        """
+        ...
+
+    def __contains__(self, v: Any) -> bool:
+        """Return whether graph contains vertex
+
+        Arguments:
+            vertex {Any} -- Vertex to be evaluated
+
+        Returns:
+            bool -- True if graph contains edge, False otherwise
+        """
+        return v in self.__adj
+
+    def __getitem__(self, v: Any) -> Dict[Any]:
+        """Return the edge target vertex mapping from source vertex
+
+        Arguments:
+            v {Any} -- Source vertex to be evaluated
+
+        Returns:
+            Dict[Any] -- Edge target vertex mapping from source vertex
+        """
+        return self.__adj[v]
+
+    def __setitem__(self, v, **kwargs):
+        ...

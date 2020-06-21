@@ -77,7 +77,7 @@
     "editor.formatOnSave": true,
     "eslint.workingDirectories": ["./src/client", "./src/server"],
     "python.pythonPath": "src\\server\\.venv\\Scripts\\python.exe",
-    "python.formatting.autopep8Args": ["--max-line-length", "120"],
+    "python.formatting.autopep8Args": ["--max-line-length", "100"],
     "vetur.format.enable": false
   }
 }

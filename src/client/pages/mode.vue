@@ -104,23 +104,23 @@ export default Vue.extend({
     window: 0,
     windows: [
       {
-        title: 'Classic',
-        subtitle: 'Good old fashioned chess',
+        title: 'Rapid',
+        subtitle: '30 min',
         icon: 'mdi-chess-king'
       },
       {
         title: 'Blitz',
-        subtitle: 'Hectic fast paced encounters',
+        subtitle: '10 min',
         icon: 'mdi-chess-queen'
       },
       {
-        title: 'Custom',
-        subtitle: 'Fully personalizable matches',
+        title: 'Bullet',
+        subtitle: '3 min',
         icon: 'mdi-chess-bishop'
       },
       {
-        title: 'Puzzle',
-        subtitle: 'Engaging bite sized challenges',
+        title: 'Lightning',
+        subtitle: '1 min',
         icon: 'mdi-chess-knight'
       }
     ]

@@ -8,6 +8,7 @@
       "dbaeumer.vscode-eslint",
       "davidanson.vscode-markdownlint",
       "christian-kohler.path-intellisense",
+      "jakeboone02.pgn",
       "esbenp.prettier-vscode",
       "ms-python.python",
       "njpwerner.autodocstring",
@@ -61,6 +62,7 @@
         "request": "launch",
         "program": "${workspaceFolder}/src/server/manage.py",
         "args": ["runserver", "--noreload"],
+        "cwd": "${workspaceFolder}/src/server",
         "django": true
       },
       {
@@ -82,6 +84,7 @@
   },
   "settings": {
     "editor.formatOnSave": true,
+    "editor.largeFileOptimizations": false,
     "eslint.workingDirectories": ["./src/client", "./src/server"],
     "python.pythonPath": "src\\server\\.venv\\Scripts\\python.exe",
     "python.formatting.autopep8Args": ["--max-line-length", "100"],

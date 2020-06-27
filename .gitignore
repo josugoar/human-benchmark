@@ -1,6 +1,7 @@
 coverage/
 dist/
 node_modules/
+stockfish-11-win/
 __pycache__/
 .nuxt/
 .venv/

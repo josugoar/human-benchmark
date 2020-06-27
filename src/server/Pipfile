@@ -6,12 +6,11 @@ verify_ssl = true
 [dev-packages]
 autopep8 = "*"
 jupyter = "*"
-matplotlib = "*"
-pandas = "*"
 pylint = "*"
+python-chess = "*"
 rope = "*"
 tensorflow = "*"
-pgntofen = "*"
+stockfish = "*"
 
 [packages]
 django = "*"

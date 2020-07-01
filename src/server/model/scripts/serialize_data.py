@@ -8,6 +8,8 @@ from typing import Iterator, Tuple, Union
 import aiofiles
 from chess import engine, pgn
 
+# SERIALIZE IN NUMPY ARRAYS!!!!
+
 
 async def serialize_data(input_path: Union[str, bytes, int], output_path: Union[str, bytes, int], command: str = "stockfish") -> Iterator[Tuple[str, str]]:
     _, stockfish = await engine.popen_uci(command)

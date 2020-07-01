@@ -87,8 +87,16 @@
     "editor.formatOnSave": true,
     "editor.largeFileOptimizations": false,
     "eslint.workingDirectories": ["./src/client", "./src/server"],
-    "python.pythonPath": "src\\server\\.venv\\Scripts\\python.exe",
     "python.formatting.autopep8Args": ["--max-line-length", "100"],
+    "python.pythonPath": "src\\server\\.venv\\Scripts\\python.exe",
+    "python.testing.unittestArgs": [
+      "-v",
+      "-s",
+      "./src/server",
+      "-p",
+      "test_*.py"
+    ],
+    "python.testing.unittestEnabled": true,
     "vetur.format.enable": false
   }
 }

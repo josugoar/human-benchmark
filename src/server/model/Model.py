@@ -1,21 +1,21 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from tensorflow.keras import layers
 
 # from scripts.vectorizer import fenToBitmap
 
 # CNN
-
-keras.utils.Sequence
 
 
 class Model(keras.Model):
 
     def __init__(self):
         super(Model, self).__init__()
-        self.dense_1 = keras.layers.Dense(100, activation="relu")
-        self.dense_2 = keras.layers.Dense(50, activation="relu")
-        self.dense_3 = keras.layers.Dense(2, activation="tanh")
+        self.a = layers.Lambda(lambda x: fenToBitmap(x))
+        self.dense_1 = layers.Dense(100, activation="relu")
+        self.dense_2 = layers.Dense(50, activation="relu")
+        self.dense_3 = layers.Dense(2, activation="tanh")
 
     def call(self, inputs):
         x = self.dense_1(inputs)

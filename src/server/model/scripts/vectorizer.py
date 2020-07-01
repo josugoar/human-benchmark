@@ -1,10 +1,6 @@
 import chess
 import numpy as np
 
-# tf.keras.layers.experimental.preprocessing.PreprocessingLayer(
-#     trainable=True, name=None, dtype=None, dynamic=False, **kwargs
-# )
-
 
 def fenToBitmap(fen: str) -> np.ndarray:
     board = chess.BaseBoard(fen)

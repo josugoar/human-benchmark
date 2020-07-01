@@ -1,6 +1,6 @@
 .
 ├── client
-│   ├── TODO: Add computer mode in landing page
+│   ├── TODO: Add ranked/computer mode in landing page
 │   ├── TODO: Change mode icons
 │   ├── TODO: Save theme cache
 │   ├── TODO: Remove unused CSS (custom-properties)
@@ -9,9 +9,7 @@
 │   └── TODO: Run tests
 └── server
     ├── model
-    │   ├── TODO: Research Reinforcement Leraning
-    │   ├── TODO: Board https://github.com/oakmac/chessboardjs/
-    │   └── TODO: Chess logic https://github.com/jhlywa/chess.js
+    │   └── TODO: Remove python-chess dependecy and parse fen manually
     ├── TODO: Migrate to Django (https://docs.djangoproject.com/en/3.0/intro/)
     ├── TODO: Add highscore database
     └── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)

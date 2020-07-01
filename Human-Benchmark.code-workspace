@@ -77,7 +77,8 @@
         "type": "python",
         "request": "launch",
         "program": "${file}",
-        "console": "integratedTerminal"
+        "console": "integratedTerminal",
+        "justMyCode": false
       }
     ],
     "version": "0.2.0"

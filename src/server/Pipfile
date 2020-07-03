@@ -10,7 +10,6 @@ pylint = "*"
 python-chess = "*"
 rope = "*"
 tensorflow = "*"
-stockfish = "*"
 aiofiles = "*"
 
 [packages]

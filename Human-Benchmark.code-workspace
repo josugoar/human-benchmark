@@ -3,6 +3,7 @@
     "recommendations": [
       "coenraads.bracket-pair-colorizer-2",
       "msjsdiag.debugger-for-chrome",
+      "batisteo.vscode-django",
       "mikestead.dotenv",
       "editorconfig.editorconfig",
       "dbaeumer.vscode-eslint",

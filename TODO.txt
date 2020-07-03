@@ -9,7 +9,9 @@
 │   └── TODO: Run tests
 └── server
     ├── model
-    │   └── TODO: Remove python-chess dependecy and parse fen manually
+    │   └── TODO: Add player turn
     ├── TODO: Migrate to Django (https://docs.djangoproject.com/en/3.0/intro/)
     ├── TODO: Add highscore database
     └── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)
+
+CHECK OUT SETTINGS SYNC

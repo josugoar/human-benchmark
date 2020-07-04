@@ -1,25 +1,26 @@
-# pylint: disable=import-error,no-member
+# pylint: disable=import-error
 
 import asyncio
 import glob
 import pathlib
 from os import path
 
+from typing import Callable
+
 import aiofiles
 import numpy as np
 from chess import engine, pgn
-from scipy import special
 
-from utils import bitboard
+from utils import bitboard, f, g
 
-dir_path = lambda p: path.join(
+dir_path: Callable[[str], str] = lambda p: path.join(
     path.dirname(path.realpath(__file__)), p
 )
 
 
-async def worker(path: pathlib.PurePath, *, checkpoint: int = 10000):
+async def worker(path: pathlib.PurePath, *, checkpoint: int = 10000) -> None:
 
-    def save_checkpoint():
+    def save_checkpoint() -> None:
         np.savez(
             dir_path(f"../data/npz/{path.stem}"),
             **kwds
@@ -42,7 +43,7 @@ async def worker(path: pathlib.PurePath, *, checkpoint: int = 10000):
                     bitboard(board)
                 ),
                 kwds["y"].append(
-                    special.expit(
+                    f(
                         (await simple_engine.analyse(
                             board,
                             engine.Limit(depth=15)
@@ -56,7 +57,7 @@ async def worker(path: pathlib.PurePath, *, checkpoint: int = 10000):
     save_checkpoint()
 
 
-async def main():
+async def main() -> None:
     await asyncio.gather(*[
         worker(pathlib.PurePath(file))
         for file in glob.glob(

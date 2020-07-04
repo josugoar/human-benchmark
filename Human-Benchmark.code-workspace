@@ -88,7 +88,10 @@
     "editor.formatOnSave": true,
     "editor.largeFileOptimizations": false,
     "eslint.workingDirectories": ["./src/client", "./src/server"],
-    "python.formatting.autopep8Args": ["--max-line-length", "100"],
+    "python.formatting.autopep8Args": [
+      "--ignore=E731",
+      "--max-line-length=100"
+    ],
     "python.pythonPath": "src\\server\\.venv\\Scripts\\python.exe",
     "python.testing.unittestArgs": [
       "-v",

@@ -16,7 +16,7 @@ tanh: Callable[
 
 
 if __name__ == "__main__":
-    X = np.linspace(-1000, 1000, num=1000)
+    X = np.linspace(-10000, 10000, num=10000)
     plt.plot(X, sigmoid(X), X, tanh(X))
     plt.legend(("sigmoid", "tanh"))
     plt.show()

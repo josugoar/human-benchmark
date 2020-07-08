@@ -3,14 +3,13 @@
 import asyncio
 import glob
 import pathlib
+import threading
 from os import path
-
-from typing import Callable
+from typing import Callable, Mapping
 
 import aiofiles
 import numpy as np
 from chess import engine, pgn
-
 from utils import bitboard, tanh
 
 dir_path: Callable[[str], str] = lambda p: path.join(
@@ -18,11 +17,13 @@ dir_path: Callable[[str], str] = lambda p: path.join(
 )
 
 
-async def worker(path: pathlib.PurePath, semaphore: asyncio.Semaphore, *, checkpoint: int = 10000) -> None:
+async def worker(
+    path: pathlib.PurePath, semaphore: asyncio.Semaphore, *, checkpoint: int = 10000
+) -> Mapping[str, list]:
     async with semaphore:
         kwds = {"X": [], "y": []}
         _, simple_engine = await engine.popen_uci(
-            dir_path("../lib/stockfish-11-win/stockfish-11-win/Windows/stockfish_20011801_x64")
+            dir_path("../lib/stockfish/stockfish")
         )
         async with aiofiles.open(path) as f:
             i = 0
@@ -40,16 +41,18 @@ async def worker(path: pathlib.PurePath, semaphore: asyncio.Semaphore, *, checkp
                         bitboard(board)
                     ),
                     kwds["y"].append(
-                        tanh((await simple_engine.analyse(
-                            board,
-                            engine.Limit(time=0.1)
-                        ))["score"].relative.score(mate_score=32768))
+                        tanh(
+                            (await simple_engine.analyse(
+                                board,
+                                engine.Limit(time=0.1)
+                            ))["score"].relative.score(mate_score=32768), k=0.0025)
                     )
                     i += 1
                     if i % checkpoint == 0:
                         save_checkpoint()
         await simple_engine.quit()
         save_checkpoint()
+        return kwds
 
 
 async def main() -> None:
@@ -57,7 +60,9 @@ async def main() -> None:
     await asyncio.gather(*(
         asyncio.ensure_future(
             worker(pathlib.PurePath(file), semaphore)
-        ) for file in glob.glob(dir_path("../data/*.pgn"))
+        ) for file in glob.glob(
+            dir_path("../data/*.pgn")
+        )
     ))
 
 

@@ -6,12 +6,16 @@ verify_ssl = true
 [dev-packages]
 aiofiles = "*"
 autopep8 = "*"
+graphviz = "*"
 jupyter = "*"
 matplotlib = "*"
+pydot = "*"
+pydotplus = "*"
 pylint = "*"
 python-chess = "*"
 rope = "*"
 tensorflow = "*"
+keras-squeeze-excite-network = {git = "https://github.com/titu1994/keras-squeeze-excite-network"}
 
 [packages]
 django = "*"

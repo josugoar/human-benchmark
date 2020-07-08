@@ -1,2 +1,2 @@
-from .activation import f, g
+from .activation import sigmoid, tanh
 from .bitboard import bitboard

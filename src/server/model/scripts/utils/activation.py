@@ -4,19 +4,19 @@ from typing import Callable, Union
 import numpy as np
 from matplotlib import pyplot as plt
 
-f: Callable[
+sigmoid: Callable[
     [Union[Number, np.ndarray], Number],
     Union[complex, float, np.ndarray]
-] = lambda X, k=0.1: np.tanh(X * k)
+] = lambda X, k=0.01: 1 / (1 + np.exp(-X * k))
 
-g: Callable[
+tanh: Callable[
     [Union[Number, np.ndarray], Number],
     Union[complex, float, np.ndarray]
-] = lambda X, k=0.1: 1 / (1 + np.exp(-X * k))
+] = lambda X, k=0.01: np.tanh(X * k)
 
 
 if __name__ == "__main__":
-    X = np.linspace(-100, 100, num=100)
-    plt.plot(X, f(X), X, g(X))
-    plt.legend(("tanh", "sigmoid"))
+    X = np.linspace(-1000, 1000, num=1000)
+    plt.plot(X, sigmoid(X), X, tanh(X))
+    plt.legend(("sigmoid", "tanh"))
     plt.show()

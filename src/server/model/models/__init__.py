@@ -1,0 +1,1 @@
+from .DeepChess import DeepChess

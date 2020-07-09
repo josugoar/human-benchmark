@@ -9,7 +9,7 @@
 │   └── TODO: Run tests
 └── server
     ├── model
-    │   └── TODO: Add player turn
+    │   └── TODO: Remove large files
     ├── TODO: Migrate to Django (https://docs.djangoproject.com/en/3.0/intro/)
     ├── TODO: Add highscore database
     └── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)

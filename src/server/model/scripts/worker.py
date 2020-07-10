@@ -28,7 +28,7 @@ async def worker(
         async with aiofiles.open(path) as f:
             i = 0
             save_checkpoint = lambda: np.savez(
-                dir_path(f"../data/npz/{path.stem}"), **kwds
+                dir_path(f"../data/npz/relative/{path.stem}"), **kwds
             )
             while True:
                 game = pgn.read_game(f._file)
@@ -45,7 +45,8 @@ async def worker(
                             (await simple_engine.analyse(
                                 board,
                                 engine.Limit(time=0.1)
-                            ))["score"].relative.score(mate_score=32768), k=0.0025)
+                            ))["score"].relative.score(mate_score=7625), k=0.0025
+                        )
                     )
                     i += 1
                     if i % checkpoint == 0:

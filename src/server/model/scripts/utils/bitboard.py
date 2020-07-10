@@ -25,10 +25,10 @@ def absolute_bitboard(board: chess.Board) -> np.ndarray:
 
 def relative_bitboard(board: chess.Board) -> np.ndarray:
     bitmap = bitboard(board)
-    return bitmap if board.turn else np.flip(bitmap, axis=range(bitmap.ndim - 1)) * -1
+    return bitmap if board.turn else np.flip(bitmap, axis=range(2)) * -1
 
 
-def print_bitboard(bitmap: np.ndarray) -> str:
+def print_bitboard(bitmap: np.ndarray) -> None:
     for piece_idx, piece_type in enumerate(chess.PIECE_TYPES):
         print(bitmap[:, :, piece_idx], chess.piece_name(piece_type), end="\n\n")
 

@@ -7,12 +7,12 @@ from matplotlib import pyplot as plt
 sigmoid: Callable[
     [Union[Number, np.ndarray], Number],
     Union[complex, float, np.ndarray]
-] = lambda X, k=0.01: 1 / (1 + np.exp(-X * k))
+] = lambda X, k=.01: 1 / (1 + np.exp(-X * k))
 
 tanh: Callable[
     [Union[Number, np.ndarray], Number],
     Union[complex, float, np.ndarray]
-] = lambda X, k=0.01: np.tanh(X * k)
+] = lambda X, k=.01: np.tanh(X * k)
 
 
 if __name__ == "__main__":

@@ -1,1 +1,1 @@
-from .DeepChess import DeepChess
+from .model import get_model

@@ -17,9 +17,7 @@ dir_path: Callable[[str], str] = lambda p: path.join(
 )
 
 
-async def worker(
-    path: pathlib.PurePath, semaphore: asyncio.Semaphore, *, checkpoint: int = 10000
-) -> Mapping[str, list]:
+async def worker(path: pathlib.PurePath, semaphore: asyncio.Semaphore, *, checkpoint: int = 10000) -> Mapping[str, list]:
     async with semaphore:
         kwds = {"X": [], "y": []}
         _, simple_engine = await engine.popen_uci(
@@ -31,15 +29,13 @@ async def worker(
                 dir_path(f"../data/npz/relative/{path.stem}"), **kwds
             )
             while True:
-                game = pgn.read_game(f._file)
-                if not game:
+                if not (game := pgn.read_game(f._file)):
                     break
-                mainline = game.mainline()
-                if mainline:
+                if mainline := game.mainline():
                     board = np.random.choice(list(mainline)).board()
                     kwds["X"].append(
                         bitboard(board)
-                    ),
+                    )
                     kwds["y"].append(
                         tanh(
                             (await simple_engine.analyse(

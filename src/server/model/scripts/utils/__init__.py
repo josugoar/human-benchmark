@@ -1,2 +1,4 @@
-from .activation import sigmoid, tanh
-from .bitboard import absolute_bitboard, relative_bitboard
+from .activations import sigmoid, tanh
+from .bitboard import bitboard
+from .moves import moves
+from .to_categorical import to_categorical

@@ -2,9 +2,9 @@ import chess
 import numpy as np
 
 
-def bitboard(board: chess.Board) -> np.ndarray:
+def bitboard(board: chess.Board, /, *, dtype: np.dtype = np.float32) -> np.ndarray:
     bitmap = np.zeros(
-        (len(chess.FILE_NAMES), len(chess.RANK_NAMES), len(chess.PIECE_TYPES)), dtype=int
+        (len(chess.FILE_NAMES), len(chess.RANK_NAMES), len(chess.PIECE_TYPES)), dtype=dtype
     )
     for piece_idx, piece_type in enumerate(chess.PIECE_TYPES):
         for square in chess.SQUARES:
@@ -15,16 +15,6 @@ def bitboard(board: chess.Board) -> np.ndarray:
                     chess.square_file(square),
                     piece_idx
                 ] = 1 if piece.color else -1
-    return bitmap
-
-
-def absolute_bitboard(board: chess.Board) -> np.ndarray:
-    bitmap = bitboard(board)
-    return np.dstack((bitmap, np.full(bitmap.shape[:-1], 1 if board.turn else -1)))
-
-
-def relative_bitboard(board: chess.Board) -> np.ndarray:
-    bitmap = bitboard(board)
     return bitmap if board.turn else np.flip(bitmap, axis=range(2)) * -1
 
 

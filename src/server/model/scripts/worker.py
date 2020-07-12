@@ -7,7 +7,6 @@ import threading
 from os import path
 from typing import Callable, Mapping
 
-import aiofiles
 import numpy as np
 from chess import engine, pgn
 from utils import bitboard, tanh
@@ -23,13 +22,13 @@ async def worker(path: pathlib.PurePath, semaphore: asyncio.Semaphore, *, checkp
         _, simple_engine = await engine.popen_uci(
             dir_path("../lib/stockfish/stockfish")
         )
-        async with aiofiles.open(path) as f:
+        with open(path) as f:
             i = 0
             save_checkpoint = lambda: np.savez(
-                dir_path(f"../data/npz/relative/{path.stem}"), **kwds
+                dir_path(f"../data/npz/{path.stem}"), **kwds
             )
             while True:
-                if not (game := pgn.read_game(f._file)):
+                if not (game := pgn.read_game(f)):
                     break
                 if mainline := game.mainline():
                     board = np.random.choice(list(mainline)).board()

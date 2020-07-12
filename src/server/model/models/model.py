@@ -1,45 +1,53 @@
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import layers
+from tensorflow.keras.layers import (Activation, Conv2D, Dense, Flatten,
+                                     GlobalAveragePooling2D, Input, Lambda,
+                                     ReLU, Reshape, add, multiply)
 
 
 def policy_head(inputs: tf.Tensor, /) -> tf.Tensor:
-    x = layers.Conv2D(POLICY_CONV_SIZE := 32, (3, 3), padding="same")(inputs)
-    x = layers.Flatten()(x)
-    return layers.Dense(1858)(x)
+    x = conv_block(inputs, filters=32)
+    x = Flatten()(x)
+    return Dense(1858, activation="softmax")(x)
 
 
 def value_head(inputs: tf.Tensor, /) -> tf.Tensor:
-    x = layers.Conv2D(VALUE_CONV_SIZE := 32, (3, 3), padding="same", activation="relu")(inputs)
-    x = layers.Conv2D(128, (3, 3), activation="relu")(x)
-    x = layers.Flatten()(x)
-    return layers.Dense(1, activation="tanh")(x)
+    x = conv_block(inputs, filters=32)
+    x = Flatten()(x)
+    x = Dense(128, activation="relu")(x)
+    return Dense(1, activation="tanh")(x)
 
 
-def squeeze_and_exite(inputs: tf.Tensor, /, *, filters: int = 32) -> tf.Tensor:
-    x = layers.GlobalAveragePooling2D()(inputs)
-    x = layers.Dense(SE_CHANNELS := 32, activation="relu")(x)
-    x = layers.Dense(2 * filters)(x)
-    x = layers.Reshape((2, filters))(x)
-    W, B = layers.Lambda(tf.unstack, arguments={"axis": 1})(x)
-    Z = layers.Activation("sigmoid")(W)
-    return layers.add((layers.multiply((Z, inputs)), B))
+def squeeze_and_exite(inputs: tf.Tensor, /, units: int) -> tf.Tensor:
+    x = GlobalAveragePooling2D()(inputs)
+    x = Dense(32, activation="relu")(x)
+    x = Dense(2 * units)(x)
+    x = Reshape((2, units))(x)
+    W, B = Lambda(tf.unstack, arguments={"axis": 1})(x)
+    Z = Activation("sigmoid")(W)
+    return add((multiply((Z, inputs)), B))
 
 
-def residual_block(inputs: tf.Tensor, /, *, filters: int = 32) -> tf.Tensor:
-    x = layers.Conv2D(filters, (3, 3), padding="same", activation="relu")(inputs)
-    x = layers.Conv2D(filters, (3, 3), padding="same")(x)
-    x = squeeze_and_exite(x, filters=filters)
-    x = layers.add((x, inputs))
-    return layers.ReLU()(x)
+def conv_block(inputs: tf.Tensor, /, filters: int, *, units: int = None, skip_connection: tf.Tensor = None) -> tf.Tensor:
+    x = Conv2D(filters, (3, 3), padding="same")(inputs)
+    if units is not None:
+        x = squeeze_and_exite(x, units=units)
+    if skip_connection is not None:
+        x = add((x, skip_connection))
+    return ReLU()(x)
+
+
+def residual_block(inputs: tf.Tensor, /, filters: int) -> tf.Tensor:
+    x = conv_block(inputs, filters=filters)
+    return conv_block(x, filters=filters, units=128, skip_connection=inputs)
 
 
 def get_model() -> keras.Model:
-    inputs = layers.Input(shape=(8, 8, 6))
-    x = layers.Conv2D(FILTERS := 128, (3, 3), padding="same", activation="relu")(inputs)
-    for _ in range(BLOCKS := 10):
-        x = residual_block(x, filters=FILTERS)
-    outputs = value_head(x)
+    inputs = Input(shape=(8, 8, 6))
+    x = conv_block(inputs, filters=128)
+    for _ in range(10):
+        x = residual_block(x, filters=128)
+    outputs = policy_head(x), value_head(x)
     return keras.Model(inputs=inputs, outputs=outputs)
 
 

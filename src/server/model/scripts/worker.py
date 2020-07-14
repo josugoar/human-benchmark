@@ -3,62 +3,85 @@
 import asyncio
 import glob
 import pathlib
-import threading
+import random
 from os import path
-from typing import Callable, Mapping
+from typing import Callable, List, Tuple
 
+import chess
 import numpy as np
 from chess import engine, pgn
-from utils import bitboard, tanh
 
-dir_path: Callable[[str], str] = lambda p: path.join(
+from utils import bitboard, moves, synchronize, tanh
+
+path_: Callable[[str], str] = lambda p, /: path.join(
     path.dirname(path.realpath(__file__)), p
 )
 
 
-async def worker(path: pathlib.PurePath, semaphore: asyncio.Semaphore, *, checkpoint: int = 10000) -> Mapping[str, list]:
-    async with semaphore:
-        kwds = {"X": [], "y": []}
-        _, simple_engine = await engine.popen_uci(
-            dir_path("../lib/stockfish/stockfish")
+async def worker(file: pathlib.PurePath, /, *, checkpoint: int = None) -> Tuple[
+    List[np.ndarray], List[int], List[float]
+]:
+    X, y_1, y_2 = [], [], []
+    _, uci_protocol = await engine.popen_uci(
+        path_("../lib/stockfish/stockfish")
+    )
+    with open(file) as f:
+        while True:
+            try:
+                play_result = await uci_protocol.play(
+                    board := random.choice(tuple(pgn.read_game(f).mainline())[:-1]).board(),
+                    limit=engine.Limit(time=.1),
+                    info=engine.INFO_SCORE
+                )
+                XX, yy_1, yy_2 = (
+                    bitboard(
+                        board,
+                        dtype=int
+                    ),
+                    moves.index(
+                        (chess.Move(
+                            *(len(chess.SQUARES) - np.array((
+                                play_result.move.from_square,
+                                play_result.move.to_square
+                            )) - 1),
+                            promotion=play_result.move.promotion
+                        ) if board.turn else play_result.move).uci()
+                    ),
+                    tanh(
+                        play_result.info["score"].relative.score(
+                            mate_score=7625
+                        ),
+                        k=.0025
+                    )
+                )
+            except AttributeError:
+                break
+            except (IndexError, ValueError):
+                pass
+            else:
+                X.append(XX), y_1.append(yy_1), y_2.append(yy_2)
+                if checkpoint and not len(X) % checkpoint:
+                    np.savez(
+                        path_(f"../data/npz/temp/{file.stem}"),
+                        X=X, y_1=y_1, y_2=y_2
+                    )
+        await uci_protocol.quit()
+        np.savez(
+            path_(f"../data/npz/{file.stem}"),
+            X=X, y_1=y_1, y_2=y_2
         )
-        with open(path) as f:
-            i = 0
-            save_checkpoint = lambda: np.savez(
-                dir_path(f"../data/npz/{path.stem}"), **kwds
-            )
-            while True:
-                if not (game := pgn.read_game(f)):
-                    break
-                if mainline := game.mainline():
-                    board = np.random.choice(list(mainline)).board()
-                    kwds["X"].append(
-                        bitboard(board)
-                    )
-                    kwds["y"].append(
-                        tanh(
-                            (await simple_engine.analyse(
-                                board,
-                                engine.Limit(time=0.1)
-                            ))["score"].relative.score(mate_score=7625), k=0.0025
-                        )
-                    )
-                    i += 1
-                    if i % checkpoint == 0:
-                        save_checkpoint()
-        await simple_engine.quit()
-        save_checkpoint()
-        return kwds
+        return X, y_1, y_2
 
 
 async def main() -> None:
-    semaphore = asyncio.Semaphore(3)
+    semaphore = asyncio.Semaphore(value=3)
     await asyncio.gather(*(
         asyncio.ensure_future(
-            worker(pathlib.PurePath(file), semaphore)
-        ) for file in glob.glob(
-            dir_path("../data/*.pgn")
-        )
+            synchronize(semaphore)(worker)(
+                pathlib.PurePath(file),
+                checkpoint=10000
+            )
+        ) for file in glob.glob(path_("../data/*.pgn"))
     ))
 
 

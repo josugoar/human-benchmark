@@ -24,4 +24,4 @@ def print_bitboard(bitmap: np.ndarray) -> None:
 
 
 if __name__ == "__main__":
-    print_bitboard(bitboard(chess.Board(chess.STARTING_FEN)))
+    print_bitboard(bitboard(chess.Board()))

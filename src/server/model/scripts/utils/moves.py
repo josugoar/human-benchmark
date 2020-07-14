@@ -1,3 +1,5 @@
+# MOVE OUT OF UTILS
+
 policy_index = None
 moves = [
     "a1b1", "a1c1", "a1d1", "a1e1", "a1f1", "a1g1", "a1h1", "a1a2", "a1b2",

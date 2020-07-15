@@ -8,14 +8,14 @@ from tensorflow.keras.layers import (Activation, Conv2D, Dense, Flatten,
 def policy_head(inputs: tf.Tensor, /) -> tf.Tensor:
     x = conv_block(inputs, filters=32)
     x = Flatten()(x)
-    return Dense(1858, activation="softmax")(x)
+    return Dense(1858, activation="softmax", name="policy")(x)
 
 
 def value_head(inputs: tf.Tensor, /) -> tf.Tensor:
     x = conv_block(inputs, filters=32)
     x = Flatten()(x)
     x = Dense(128, activation="relu")(x)
-    return Dense(1, activation="tanh")(x)
+    return Dense(1, activation="tanh", name="value")(x)
 
 
 def squeeze_and_exite(inputs: tf.Tensor, /, units: int) -> tf.Tensor:

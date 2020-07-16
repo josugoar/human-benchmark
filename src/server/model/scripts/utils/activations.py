@@ -1,12 +1,14 @@
-from numbers import Number
-from typing import Callable
+from typing import Callable, Union
 
 import numpy as np
 from matplotlib import pyplot as plt
 
-sigmoid: Callable[[np.ndarray, Number], np.ndarray] = lambda X, k=.01: 1 / (1 + np.exp(-X * k))
+Numeric = Union[np.number, np.ndarray]
+Activation = Callable[[Numeric, Numeric], Numeric]
 
-tanh: Callable[[np.ndarray, Number], np.ndarray] = lambda X, k=.01: np.tanh(X * k)
+sigmoid: Activation = lambda X, /, *, k=.01: 1 / (1 + np.exp(-X * k))
+
+tanh: Activation = lambda X, /, *, k=.01: np.tanh(X * k)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+from typing import Optional
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.layers import (Activation, Conv2D, Dense, Flatten,
@@ -28,9 +30,9 @@ def squeeze_and_exite(inputs: tf.Tensor, /, units: int) -> tf.Tensor:
     return add((multiply((Z, inputs)), B))
 
 
-def conv_block(inputs: tf.Tensor, /, filters: int, *, units: int = None, skip_connection: tf.Tensor = None) -> tf.Tensor:
+def conv_block(inputs: tf.Tensor, /, filters: int, *, units: int = 0, skip_connection: Optional[tf.Tensor] = None) -> tf.Tensor:
     x = Conv2D(filters, (3, 3), padding="same")(inputs)
-    if units is not None:
+    if units:
         x = squeeze_and_exite(x, units=units)
     if skip_connection is not None:
         x = add((x, skip_connection))
@@ -49,8 +51,3 @@ def get_model() -> keras.Model:
         x = residual_block(x, filters=128)
     outputs = policy_head(x), value_head(x)
     return keras.Model(inputs=inputs, outputs=outputs)
-
-
-if __name__ == "__main__":
-    model = get_model()
-    print(model.summary())

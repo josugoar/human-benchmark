@@ -9,7 +9,9 @@
 │   └── TODO: Run tests
 └── server
     ├── model
-    │   └── TODO: Add batch normalization
+    │   ├── TODO: Add batch normalization
+    │   ├── TODO: Add dropout
+    │   └── TODO: Use pathlib for path related activities
     ├── TODO: Add highscore database
     └── TODO: Integrate with GraphQL (https://docs.graphene-python.org/projects/django/en/latest/)
 

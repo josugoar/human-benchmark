@@ -1,8 +1,10 @@
 import asyncio
 import functools
-from typing import Any, Awaitable, Callable
+from typing import Any, Awaitable, Callable, TypeVar
 
-AsyncCallable = Callable[..., Awaitable[Any]]
+T = TypeVar("T")
+
+AsyncCallable = Callable[..., Awaitable[T]]
 
 
 def synchronize(lock: asyncio.locks._ContextManagerMixin, /) -> Callable[[AsyncCallable], AsyncCallable]:

@@ -1,9 +1,9 @@
 coverage/
 data/
 dist/
+h5/
 lib/
 node_modules/
-ser/
 __pycache__/
 .nuxt/
 .venv/

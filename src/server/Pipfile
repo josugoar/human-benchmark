@@ -12,6 +12,8 @@ pylint = "*"
 python-chess = "*"
 rope = "*"
 tensorflow = "*"
+mypy = "*"
+h5py = "*"
 
 [packages]
 django = "*"

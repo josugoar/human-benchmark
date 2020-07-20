@@ -1,22 +1,25 @@
 import argparse
 
-from .version import __version__
-
 parser = argparse.ArgumentParser(
     prog="model",
-    description="Powered by TensorFlow",
+    description="powered by TensorFlow",
     epilog="<https://github.com/JoshGoA>"
-)
-parser.add_argument(
-    "--summary",
-    action="store_true",
-    help="print a string summary of the network"
 )
 parser.add_argument(
     "--version",
     action="version",
     help="show program version and exit",
-    version=f"%(prog)s {__version__}"
+    version="%(prog)s 1.0.0"
+)
+parser.add_argument(
+    "--summary",
+    action="store_true",
+    help="print a string summary of the network and exit"
+)
+parser.add_argument(
+    "--plot",
+    help="convert the model to dot format and save to a file",
+    metavar="<file>"
 )
 
 subparsers = parser.add_subparsers(

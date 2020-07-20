@@ -1,18 +1,25 @@
-import argparse
-
 from .. import subparsers
-from . import parent_parser
-from .utils import formatter_factory
+from . import load_mixin, save_mixin, weights_mixin
+from .utils import OptionStringHelpFormatter, formatter_factory
 
 compile_parser = subparsers.add_parser(
     "compile",
     description="configure the model for training",
-    parents=(parent_parser,),
     formatter_class=formatter_factory(
-        argparse.HelpFormatter,
-        max_help_position=50
+        OptionStringHelpFormatter,
+        max_help_position=30
     )
 )
+
+compile_mixins = {
+    weights_mixin: {},
+    load_mixin: {},
+    save_mixin: {
+        "required": True
+    }
+}
+for mixin, kwargs in compile_mixins.items():
+    mixin(compile_parser, **kwargs)
 
 compile_group = compile_parser.add_argument_group(
     "compilation parameters"

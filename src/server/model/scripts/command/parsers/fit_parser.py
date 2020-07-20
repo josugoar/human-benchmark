@@ -1,34 +1,34 @@
-import argparse
-
-import numpy as np
-
 from .. import subparsers
-from . import parent_parser
-from .utils import BoundedCountAction, formatter_factory
+from . import load_mixin, save_mixin, verbose_mixin, weights_mixin
+from .utils import OptionStringHelpFormatter, formatter_factory
 
 fit_parser = subparsers.add_parser(
     "fit",
     description="train the model for a fixed number of epochs",
-    parents=(parent_parser,),
     formatter_class=formatter_factory(
-        argparse.HelpFormatter,
-        max_help_position=50
+        OptionStringHelpFormatter,
+        max_help_position=30
     )
 )
 fit_parser.add_argument(
     "data",
     nargs="+",
-    # type=np.load,
     help="training data",
     metavar="<filename.npz>"
 )
-fit_parser.add_argument(
-    "-v", "--verbose",
-    action=BoundedCountAction,
-    default=0,
-    choices=range(1, 3),
-    help="increase output verbosity"
-)
+
+fit_mixins = {
+    verbose_mixin: {
+        "choices": range(1, 3)
+    },
+    weights_mixin: {},
+    load_mixin: {},
+    save_mixin: {
+        "required": True
+    }
+}
+for mixin, kwargs in fit_mixins.items():
+    mixin(fit_parser, **kwargs)
 
 fit_group = fit_parser.add_argument_group(
     "training parameters"
@@ -51,13 +51,13 @@ fit_group.add_argument(
 validation_group = fit_group.add_mutually_exclusive_group()
 validation_group.add_argument(
     "--validation-data",
-    type=np.load,
+    nargs="+",
     help="data on which to evaluate the loss and any model metrics at the end of each epoch",
     metavar="<filename.npz>"
 )
 validation_group.add_argument(
     "--validation-split",
-    default=0,
+    default=0.,
     type=float,
     help="fraction of the training data to be used as validation data",
     metavar="<float>"

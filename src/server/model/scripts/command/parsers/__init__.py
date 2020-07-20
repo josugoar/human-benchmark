@@ -1,23 +1,37 @@
 import argparse
+from typing import Any, Callable
 
-parent_parser = argparse.ArgumentParser(
-    add_help=False
-)
-parent_parser.add_argument(
+from .utils import BoundedCountAction
+
+ParserMixin = Callable[[argparse.ArgumentParser, Any], None]
+
+load_mixin: ParserMixin = lambda parser, /, **kwargs: parser.add_argument(
     "-l", "--load",
     help="load model from path",
-    metavar="<path>"
+    metavar="<path>",
+    **kwargs
 )
-parent_parser.add_argument(
+
+save_mixin: ParserMixin = lambda parser, /, **kwargs: parser.add_argument(
     "-s", "--save",
-    required=True,
     help="save model to path",
-    metavar="<path>"
+    metavar="<path>",
+    **kwargs
 )
-parent_parser.add_argument(
+
+verbose_mixin: ParserMixin = lambda parser, /, **kwargs: parser.add_argument(
+    "-v", "--verbose",
+    action=BoundedCountAction,
+    default=0,
+    help="increase output verbosity",
+    **kwargs
+)
+
+weights_mixin: ParserMixin = lambda parser, /, **kwargs: parser.add_argument(
     "-w", "--weights",
     action="store_true",
-    help="load/save model weights"
+    help="load/save model weights",
+    **kwargs
 )
 
 from .compile_parser import *

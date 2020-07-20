@@ -1,30 +1,33 @@
-import argparse
-
 from .. import subparsers
-from .utils import BoundedCountAction, formatter_factory
+from . import load_mixin, weights_mixin, verbose_mixin
+from .utils import OptionStringHelpFormatter, formatter_factory
 
 predict_parser = subparsers.add_parser(
     "predict",
-    description="generates output predictions for the input samples",
+    description="generate output predictions for the input samples",
     formatter_class=formatter_factory(
-        argparse.HelpFormatter,
-        max_help_position=50
+        OptionStringHelpFormatter,
+        max_help_position=30
     )
 )
 predict_parser.add_argument(
     "x",
     nargs="+",
-    # type=lambda string: bitboard(chess.Board(string)),
     help="input samples",
     metavar="<fen>"
 )
-predict_parser.add_argument(
-    "-v", "--verbose",
-    action=BoundedCountAction,
-    default=0,
-    choices=range(1, 2),
-    help="increase output verbosity"
-)
+
+predict_mixins = {
+    verbose_mixin: {
+        "choices": range(1, 2)
+    },
+    weights_mixin: {},
+    load_mixin: {
+        "required": True
+    }
+}
+for mixin, kwargs in predict_mixins.items():
+    mixin(predict_parser, **kwargs)
 
 predict_group = predict_parser.add_argument_group(
     "predict parameters"

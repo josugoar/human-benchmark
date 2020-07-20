@@ -1,14 +1,21 @@
+import argparse
+
 from .. import subparsers
 from . import parent_parser
+from .utils import formatter_factory
 
 compile_parser = subparsers.add_parser(
     "compile",
     description="configure the model for training",
-    parents=(parent_parser,)
+    parents=(parent_parser,),
+    formatter_class=formatter_factory(
+        argparse.HelpFormatter,
+        max_help_position=50
+    )
 )
 
 compile_group = compile_parser.add_argument_group(
-    "compile parameters"
+    "compilation parameters"
 )
 compile_group.add_argument(
     "--optimizer",

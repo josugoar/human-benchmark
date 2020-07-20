@@ -1,12 +1,20 @@
+import argparse
+
 from .. import subparsers
-from .utils import BoundedCountAction
+from .utils import BoundedCountAction, formatter_factory
 
 predict_parser = subparsers.add_parser(
     "predict",
-    description="generates output predictions for the input samples"
+    description="generates output predictions for the input samples",
+    formatter_class=formatter_factory(
+        argparse.HelpFormatter,
+        max_help_position=50
+    )
 )
 predict_parser.add_argument(
     "x",
+    nargs="+",
+    # type=lambda string: bitboard(chess.Board(string)),
     help="input samples",
     metavar="<fen>"
 )
@@ -26,6 +34,5 @@ predict_group.add_argument(
     default=32,
     type=int,
     help="number of samples per batch",
-    metavar="<int>",
-    dest="batch_size"
-)  # TODO: exclusive group (predict/predict_on_batch)
+    metavar="<int>"
+)

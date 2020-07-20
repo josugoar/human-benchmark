@@ -4,16 +4,21 @@ parent_parser = argparse.ArgumentParser(
     add_help=False
 )
 parent_parser.add_argument(
-    "-i", "--input",
+    "-l", "--load",
     help="load model from path",
     metavar="<path>"
-)  # TODO: exclusive group (load/load_weights)
+)
 parent_parser.add_argument(
-    "-o", "--output",
+    "-s", "--save",
     required=True,
     help="save model to path",
     metavar="<path>"
-)  # TODO: exclusive group (save/save_weights)
+)
+parent_parser.add_argument(
+    "-w", "--weights",
+    action="store_true",
+    help="load/save model weights"
+)
 
 from .compile_parser import *
 from .fit_parser import *

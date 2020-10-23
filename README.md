@@ -2,10 +2,6 @@
 
 > Powered by Nuxt.js, Django and TensorFlow
 
-## Status
-
-Currently working on the Human Benchmark UCI chess engine and protocol (deepchess) 
-
 ## Sources
 
 - [FICS](https://www.ficsgames.org/)

@@ -11,3 +11,4 @@ report.*
 sw.*
 *.snap
 .env
+.vscode/

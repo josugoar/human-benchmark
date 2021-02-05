@@ -1,4 +1,4 @@
-# Human-Benchmark
+# human-benchmark
 
 > Powered by Nuxt.js, Django and TensorFlow
 
